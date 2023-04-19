@@ -1,4 +1,7 @@
-# ISPC---Programacion-1---Equipo-9-
+# ISPC Programacion Inicial Equipo-9
+
+Tecnicatura Superior Innovacion con Tecnologias 4.0
+
 ***************************************************************************************************************
 Este repositorio es creado para Programación Inicial - TSIT4.0 - 2023, a cargo del Profesor Kevin Arce Kessler.
 ***************************************************************************************************************
