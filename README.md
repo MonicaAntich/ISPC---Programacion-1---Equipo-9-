@@ -1,5 +1,5 @@
 # ISPC Programacion Inicial Equipo-9
-que hermoso día
+
 
 
 Tecnicatura Superior Innovacion con Tecnologias 4.0
