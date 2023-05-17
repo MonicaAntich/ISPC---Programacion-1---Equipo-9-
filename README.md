@@ -12,7 +12,6 @@ Este repositorio es creado para Programación Inicial - TSIT4.0 - 2023, a cargo 
 A continuacion los miembros del equipo 
 
 * Hebe Velazquez  - https://github.com/HebeV
-* Fernanda Moreno - https://github.com/Ferchy341
 * Monica Antich   - https://github.com/MonicaAntich
 * Braian Palacio  - https://github.com/braianpalacio
 
@@ -31,7 +30,6 @@ Abro la carpeta, me paso al main, git pull.
 Me paso a mi rama, git pull origin main.
 Codifico
 Subo los cambios a GitHub
-Y ahora debo actualizar mi rama en el github
-Sincronizo cambios
+
 Y a descansar
 
