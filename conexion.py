@@ -1,19 +1,22 @@
-import mysql.connector 
-from mysql.connector import Error
+import mysql.connector
+class Conectar():
 
-class Conectar_Base_de_Datos():
-    def __init__(self):
+    def __init__(self) -> None:
         try:
-            print("Hol Mundo")
-            self.conexion = mysql.connector.connect(
-                host= 'localhost',
-                port= 3306,
-                user= 'root',
-                password= '2468vale',
-                db='bd_ejemplo_innova',
+            conexion = mysql.connector.connect(
+                host = 'localhost',
+                port = 3306,
+                user = 'root',
+                password = '',
+                db='bd_big_bread'
             )
-            print("Hol Mundo")
-        except mysql.connector.Error as descripcionError:
-            print("No se conecto la base de datos", descripcionError)
+            if conexion.is_connected():
+                print("LA CONEXION FUE EXITOSA")
 
+        except:
+            print("NO SE PUDO CONETAR A LA BASE DE DATOS")
 
+        finally:
+            if conexion.is_connected():
+                conexion.close()
+                print("LA CONEXION FUE CERRADA")
