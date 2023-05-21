@@ -7,4 +7,6 @@ if(variableAuxiliar == 1):
     conn = Conector.Conectar()
 else: 
     print("Gracias por cerrar la Base de Datos.")
-
+ 
+ 
+ 
