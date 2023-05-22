@@ -1,4 +1,4 @@
-import Conexion as Conector
+import Conexion1 as Conector
 
 print("Para conectarse a la Base de Datos presione 1")
 print("Para cerrar la Base de Datos presione 2")
