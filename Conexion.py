@@ -1,4 +1,6 @@
+
 import mysql.connector
+
 class Conectar():
 
     def __init__(self) -> None:
@@ -14,7 +16,7 @@ class Conectar():
                 print("LA CONEXION FUE EXITOSA")
 
         except:
-            print("NO SE PUDO CONETAR A LA BASE DE DATOS")
+            print("NO SE PUDO CONECTAR A LA BASE DE DATOS")
 
         finally:
             if conexion.is_connected():
