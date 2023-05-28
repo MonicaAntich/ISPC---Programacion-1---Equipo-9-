@@ -55,3 +55,10 @@ LISTAR toda la producción en un rango de fechas específico.
 
 LISTAR todos los insumos para la producción de un día específico.
 
+**CREACION BASE DE DATOS REMOTA/NUBE**
+
+DNS:        brokergrupo6.ddns.net
+puerto:     3306
+Usuario:    grupo9
+Password:   grupo9
+
