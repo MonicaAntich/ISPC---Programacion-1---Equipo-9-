@@ -6,10 +6,10 @@ class Conectar():
     def __init__(self) -> None:
         try:
             conexion = mysql.connector.connect(
-                host = 'brokergrupo6.net',
+                host = 'brokergrupo6.ddns.net',
                 port = 3306,
-                user = 'grupo6',
-                password = 'grupo6',
+                user = 'grupo9',
+                password = 'grupo9',
                 db='bd_big_bread'
             )
             if conexion.is_connected():
