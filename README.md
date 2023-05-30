@@ -16,20 +16,49 @@ A continuacion los miembros del equipo
 * Braian Palacio  - https://github.com/braianpalacio
 
 
-AYUDA MEMORIA
 
- Hola grupo: Buenas noches. 
-Hoy por la tarde pudimos hacer un Meet con Fer y solucionamos un par de cositas directamente en Github. Agregamos la evidencia 2 tanto en la rama principal ( main) como en la wiki y también creamos una wiki para la evidencia uno y una wiki para la evidencia 2.  Entonces ahora cada uno por favor en su visual estudio code abran el repositorio, luego abran terminal y estando en la rama main tienen que poner git pull y una vez que bajen las actualizaciones, se pasan a la rama propia de ustedes y ahí hacen git pull origin main. Con eso ya tienen ustedes actualizado el visual Studio code.
-Bueno, ahora ya están listos para trabajar, agregar, programar, codificar, codear, lo que quieran, está todo listo para que trabajen. Una vez que ustedes trabajaron ahí, acuérdense que los cambios hay que subirlos.
+Requerimiento de Proyecto Final Cuatrimestral
+
+La empresa "Big Bread SA" nos ha expresado que necesitan alguna manera de poder informatizar la primera parte de su proceso productivo, que consta de la preparación de los materiales para la producción del día. 
+
+Todos los días al llegar, deben realizar el mismo trabajo para cada producto que van a producir el día: 
+
+En base a la cantidad deseada de producción diaria deben calcular la cantidad de materia prima de cada insumo necesario para el mismo, buscarlo, dejarlos disponibles todos juntos y comenzar la producción. 
+
+Se necesita poder proveer de una solución informática e innovadora que pueda automatizar al máximo dicho cálculo y facilitar la tarea inicial.
 
 
 
+Análisis de Requerimiento
 
-Ejemplo. Mañana quiero codear un rato? 
-Abro la carpeta, me paso al main, git pull. 
-Me paso a mi rama, git pull origin main.
-Codifico
-Subo los cambios a GitHub
+Luego de trabajarlo con el equipo de TI, se propone:
+Crear una Calculadora de insumos, que reciba la receta que se desea producir, y la cantidad que harán.
+La misma retornará los insumos con sus cantidades requeridas para la producción indicada. 
+También proveerá los siguientes reportes:
+•Producción total de un día ingresado.
+•Producción total de un rango de tiempo ingresado.
+•Cantidad de insumos utilizados en un día ingresado.
 
-Y a descansar
+
+Requerimientos Funcionales
+Crear, editar, eliminar PRODUCTOS.
+
+Crear, editar, eliminar INSUMOS.
+
+Crear, editar, eliminar PRODUCCIÓN DIARIA.
+
+Crear, editar, eliminar RECETAS.
+
+LISTAR toda la producción de un día específico.
+
+LISTAR toda la producción en un rango de fechas específico.
+
+LISTAR todos los insumos para la producción de un día específico.
+
+**CREACION BASE DE DATOS REMOTA/NUBE**
+
+DNS:        brokergrupo6.ddns.net<br>
+puerto:     3306<br>
+Usuario:    grupo9<br>
+Password:   grupo9<br>
 
