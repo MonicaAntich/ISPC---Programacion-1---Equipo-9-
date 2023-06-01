@@ -2,7 +2,7 @@
 import controlador
 
 while True:
-        print("""\n1) Produccion del día    2) Productos    3) Recetas   4) Insumos    5) Salir""")
+        print("""\n1) Produccion del día    2) Productos    3) Recetas   4) Insumos    5) Salir  """)
 
         menu = input("\nSeleccione una opción: ")
 
