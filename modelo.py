@@ -79,14 +79,45 @@ class ConectarProductos:
                 print("Pizza eliminada correctamente")
             except mysql.connector.Error as descripcionError:
                 print("No se pudo conectar! debido: ", descripcionError)
+                
+    def buscarProducto(self, id_producto):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM productos WHERE id_producto = %s;"
+                datos = (id_producto,)
+                cursor.execute(sentenciaSQL, datos)
+                resultados = cursor.fetchone()
+                self.conexion.commit()
+                self.conexion.close()
+                return resultados
 
+            except mysql.connector.Error as descripcionError:
+                print("No se pudo conectar! debido: ", descripcionError)
+
+    def modificarProductos(self, producto):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "UPDATE productos SET receta= %s, nombre= %s WHERE id_producto=%s;"
+
+                datos = (producto.getreceta(),
+                         producto.getnombre(),
+                         producto.getid_producto(),)
+
+                cursor.execute(sentenciaSQL, datos)
+                self.conexion.commit()
+                self.conexion.close()
+                print("Pizza actualizada correctamente")
+
+            except mysql.connector.Error as descripcionError:
+                print("No se pudo conectar! debido: ", descripcionError)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 class Recetas:
-    def __init__(self, id_receta, id_insumos, cantidad, nombre) -> None:
+    def __init__(self, id_receta, id_insumos, nombre) -> None:
         self.id_receta = id_receta
         self.id_insumos = id_insumos
-        self.cantidad = cantidad
         self.nombre = nombre
         
     def getid_receta(self):
@@ -102,14 +133,12 @@ class Recetas:
         self.id_receta = id_receta
     def setid_insumos(self, id_insumos):
         self.id_insumos = id_insumos
-    def setcantidad(self, cantidad):
-        self.cantidad = cantidad
     def setnombre(self, nombre):
         self.nombre = nombre
         
 
     def __str__(self) -> str:
-        return self.id_receta + self.id_insumos + self.cantidad + self.nombre
+        return self.id_receta + self.id_insumos +  self.nombre
 
 class ConectarRecetas:
     def __init__(self) -> None:
@@ -140,11 +169,9 @@ class ConectarRecetas:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "INSERT INTO recetas VALUES(%s,%s,%s, %s);" #El null sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
+                sentenciaSQL = "INSERT INTO recetas VALUES(NULL,%s,%s);" #El null sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
 
-                datos = (parametros.getid_receta(),
-                         parametros.getid_insumos(),
-                         parametros.getcantidad(),
+                datos = (parametros.getid_insumos(),
                          parametros.getnombre())
 
                 cursor.execute(sentenciaSQL, datos)
@@ -155,5 +182,18 @@ class ConectarRecetas:
             except mysql.connector.Error as descripcionError:
                 print("No se pudo conectar! debido: ", descripcionError)
 
+    def eliminarRecetas(self, parametro):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "DELETE FROM recetas WHERE id_receta = %s;"
+
+                datos = (parametro.getid_receta(),)
+                cursor.execute(sentenciaSQL, datos)
+                self.conexion.commit()
+                self.conexion.close()
+                print("Receta eliminada correctamente")
+            except mysql.connector.Error as descripcionError:
+                print("No se pudo conectar! debido: ", descripcionError)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
 
