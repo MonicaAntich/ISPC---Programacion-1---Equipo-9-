@@ -116,6 +116,14 @@ def listarInsumos():
     for lista in listado:
         print(
             " insumo: "+str(lista[1])+ str(lista[2])) #si queremos mostrar el id seria con "id: " + str(lista[0])
+        
+def crearInsumos():
+    nombre = input("Ingrese el nombre del insumo: ")
+    cantidad = input("Ingrese la cantidad en grs: ")
+    
+    productoNuevo = modelo.Insumo
+    con = modelo.ConectarInsumo()
+    con.crearInsumos(productoNuevo)        
            
 
 
