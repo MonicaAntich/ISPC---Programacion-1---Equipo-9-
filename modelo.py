@@ -1,4 +1,4 @@
-# TODAS LAS CLASES DEL PROYECTO
+# AQUI VAN TODAS LAS CLASES DEL PROYECTO
 import mysql.connector
 
 
@@ -197,3 +197,70 @@ class ConectarRecetas:
                 print("No se pudo conectar! debido: ", descripcionError)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+class Insumo():#Creamos el metodo constructor del objeto persona, en python se llama init. Esta es la formula
+               #basica de la funcion constructora
+    def __init__(self, id_insumos, descripcion) -> None:  #Constructor con las variables
+        self.id_insumos = id_insumos#Creamos el objeto
+        self.descripcion = descripcion #id y descripcion  son parametros, atributos
+      
+        
+# Ahora se crean los setter and getter, porq si creamos un objeto y despues necesitamos hacer cambios no lo podriamos hacer
+# Se crea un set y un get por cada atributo
+
+    def getid_insumos(self):
+        return self.id_insumos
+    def getdescripcion(self):
+        return self.descripcion
+         
+# Los set nos van a permitir definir, lo nuevo q quiera agregar o modificar
+    def setid_insumos(self,id_insumos):
+        self.id_insumos= id_insumos
+    def setnombre(self, descripcion):
+        self.descripcion = descripcion
+     
+    # El siguiente metodo es para que nos retorne los atributos
+    
+    def __str__(self) -> str:
+        return str (self.id_insumos) + self.descripcion  
+
+#Ahora la clase conexion
+class ConectarInsumo:
+    def __init__(self) -> None:
+        try:
+            self.conexion = mysql.connector.connect(
+                host = 'brokergrupo6.ddns.net',
+                port = 3306,
+                user = 'grupo9',
+                password = 'grupo9',
+                db='bd_big_bread'
+            )
+        except mysql.connector.Error as descripcionError:
+            print("No se pudo conectar debido: ", descripcionError)
+            
+    def listarInsumos(self):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM insumos;"
+                cursor.execute(sentenciaSQL)
+                resultados = cursor.fetchall()
+                self.conexion.close()
+                return resultados
+            except mysql.connector.Error as descripcionError:
+                print("No se pudo conectar! debido: ", descripcionError)
+                
+    # def insertarInsumos(self, descrip, cant):   #Parametro por defecto  
+    #     if self.conexion.is_connected():
+    #         try:
+    #             print("Hasta aca llegue")
+    #             cursor = self.conexion.cursor()
+    #             sentenciaSQL = "INSERT INTO bd_big_bread.insumos ( id_insumos, descripcion, cantidad_insumos)VALUES( NULL, %s, %s );"
+    #             val = (descrip, cant)
+    #             cursor.execute(sentenciaSQL, val)
+    #             self.conexion.commit()
+    #             self.conexion.close()
+    #             print("Hasta aca llegue")
+    #             self.conexion.close()
+    #         except mysql.connector.Error as descripcionError:
+    #             print("No se pudo conectar debido: ", descripcionError)                          
