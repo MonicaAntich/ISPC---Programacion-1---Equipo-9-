@@ -108,3 +108,17 @@ def eliminarReceta():
     producto = modelo.Recetas(id_receta, '', '')
 
     con.eliminarRecetas(producto)
+    
+    #-----------------------------------------------------------------------------------------------------------
+def listarInsumos():
+    con = modelo.ConectarInsumo()
+    listado = con.listarInsumos()
+    for lista in listado:
+        print(
+            " insumo: "+str(lista[1])+ str(lista[2])) #si queremos mostrar el id seria con "id: " + str(lista[0])
+           
+
+
+    
+           
+        
