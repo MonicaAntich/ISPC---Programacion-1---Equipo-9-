@@ -62,8 +62,8 @@ while True:
             menuInsumo = input("\n-Seleccione una opción: ")
             if menuInsumo == "1":
                 controlador.listarInsumos()
-            # elif menuInsumo == "2":
-            #     controlador.insertoInsumos()
+            elif menuInsumo == "2":
+                controlador.crearInsumos()
             # elif menuInsumo == "3":
             #     controlador.eliminarInsumos() 
             
