@@ -33,3 +33,6 @@ ALTER TABLE `insumos`
 ALTER TABLE `productos`
  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+SELECT * FROM insumos;
+INSERT INTO bd_big_bread.insumos (id_insumos, descripcion, cantidad_insumos)VALUES(NULL, 'm', 300);
