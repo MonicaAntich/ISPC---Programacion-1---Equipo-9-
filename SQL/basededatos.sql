@@ -36,3 +36,4 @@ COMMIT;
 
 SELECT * FROM insumos;
 INSERT INTO bd_big_bread.insumos (id_insumos, descripcion, cantidad_insumos)VALUES(NULL, 'm', 300);
+

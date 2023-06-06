@@ -3,26 +3,21 @@ import mysql.connector
 
 
 class Productos:
-    def __init__(self, id_producto, receta, nombre) -> None:
+    def __init__(self, id_producto, nombre) -> None:
         self.id_producto = id_producto
-        self.receta = receta
         self.nombre = nombre
 
     def getid_producto(self):
         return self.id_producto
-    def getreceta(self):
-        return self.receta
     def getnombre(self):
         return self.nombre
 
     def setid_producto(self, id_producto):
         self.id_producto = id_producto
-    def setreceta(self, receta):
-        self.receta = receta
     def setnombre(self, nombre):
         self.nombre = nombre
     def __str__(self) -> str:
-        return self.id_producto + self.receta + self.nombre 
+        return self.id_producto +  self.nombre 
 
 class ConectarProductos:
     def __init__(self) -> None:
@@ -53,11 +48,8 @@ class ConectarProductos:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "INSERT INTO productos VALUES(NULL,%s,%s);"
-
-                datos = (producto.getreceta(),
-                         producto.getnombre())
-
+                sentenciaSQL = "INSERT INTO productos VALUES(NULL,%s);"
+                datos = (producto.getnombre(),)
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()
                 self.conexion.close()
@@ -99,10 +91,9 @@ class ConectarProductos:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "UPDATE productos SET receta= %s, nombre= %s WHERE id_producto=%s;"
+                sentenciaSQL = "UPDATE productos SET nombre= %s WHERE id_producto=%s;"
 
-                datos = (producto.getreceta(),
-                         producto.getnombre(),
+                datos = (producto.getnombre(),
                          producto.getid_producto(),)
 
                 cursor.execute(sentenciaSQL, datos)
@@ -112,33 +103,37 @@ class ConectarProductos:
 
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------
 
 class Recetas:
-    def __init__(self, id_receta, nombre) -> None:
+    def __init__(self, id_receta, pizza_nro,cantidad_insumos, id_insumos) -> None:
         self.id_receta = id_receta
-        self.nombre = nombre
-        self.nombre = nombre
-        
+        self.pizza_nro = pizza_nro
+        self.cantidad_insumos = cantidad_insumos
+        self.id_insumos = id_insumos
+         
     def getid_receta(self):
         return self.id_receta
-    def getnombre(self):
-        return self.nombre
-    def getcantidad(self):
-        return self.cantidad
-    def getnombre(self):
-        return self.nombre
-
+    def getpizza_nro(self):
+        return self.pizza_nro
+    def getcantidad_insumos(self):
+        return self.cantidad_insumos
+    def getid_insumos(self):
+        return self.id_insumos
+ 
     def setid_receta(self, id_receta):
         self.id_receta = id_receta
-    def setnombre(self, nombre):
-        self.nombre = nombre
-    def setnombre(self, nombre):
-        self.nombre = nombre
+    def setpizza_nro(self, pizza_nro):
+        self.pizza_nro = pizza_nro
+    def setcantidad_insumos(self, cantidad_insumos):
+        self.cantidad_insumos = cantidad_insumos
+    def setid_insumos(self,id_insumos):
+        self.id_insumos = id_insumos
         
 
     def __str__(self) -> str:
-        return self.id_receta + self.nombre +  self.nombre
+        return self.id_receta + self.pizza_nro +  self.cantidad_insumos + self.id_insumos
 
 class ConectarRecetas:
     def __init__(self) -> None:
@@ -165,15 +160,14 @@ class ConectarRecetas:
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
 
-    def insertarRecetas(self, parametros): 
+    def insertarRecetas(self, parametro): 
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "INSERT INTO recetas VALUES(NULL,%s,%s);" #El NULL sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
-
-                datos = (parametros.getnombre(),
-                         parametros.getnombre())
-
+                sentenciaSQL = "INSERT INTO recetas VALUES(NULL,%s,%s,%s);" #El NULL sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
+                datos = (parametro.getpizza_nro(),
+                         parametro.getcantidad_insumos(), 
+                         parametro.getid_insumos())
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()
                 self.conexion.close()
@@ -195,32 +189,62 @@ class ConectarRecetas:
                 print("Receta eliminada correctamente")
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
 
+    def buscarRecetas(self, id_receta):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM recetas WHERE id_receta = %s;"
+                datos = (id_receta,)
+                cursor.execute(sentenciaSQL, datos)
+                resultados = cursor.fetchone()
+                self.conexion.commit()
+                self.conexion.close()
+                return resultados
 
-class Insumo():#Creamos el metodo constructor del objeto persona, en python se llama init. Esta es la formula
-               #basica de la funcion constructora
-    def __init__(self, nombre) -> None:  #Constructor con las variables
-        self.nombre = nombre#Creamos el objeto
-         #id y cantidad  son parametros, atributos
-      
-        
-# Ahora se crean los setter and getter, porq si creamos un objeto y despues necesitamos hacer cambios no lo podriamos hacer
-# Se crea un set y un get por cada atributo
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
 
+    def modificarRecetas(self, parametro):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "UPDATE recetas SET pizza_nro= %s, cantidad_insumos=%s, id_insumos=%s  WHERE id_receta=%s;"
+
+                datos = (parametro.getpizza_nro(),
+                         parametro.getcantidad_insumos(),
+                         parametro.getid_insumos(),
+                         parametro.getid_receta(),)
+
+                cursor.execute(sentenciaSQL, datos)
+                self.conexion.commit()
+                self.conexion.close()
+                print("Receta actualizada correctamente")
+
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------
+
+class Insumo:#Creamos el metodo constructor del objeto persona, en python se llama init. Esta es la formula basica de la funcion constructora
+    def __init__(self, id_insumos, nombre) -> None:  #Constructor con las variables
+        self.id_insumos= id_insumos
+        self.nombre = nombre    #Creamos el objeto id y nombre  son parametros, atributos
+    # Ahora se crean los setter and getter, porq si creamos un objeto y despues necesitamos hacer cambios no lo podriamos hacer
+    # Se crea un set y un get por cada atributo
+    def getid_insumos(self):
+        return self.id_insumos
     def getnombre(self):
         return self.nombre
-    
-         
-# Los set nos van a permitir definir, lo nuevo q quiera agregar o modificar
+
+    # Los set nos van a permitir definir, lo nuevo q quiera agregar o modificar
+    def setid_insumos(self,id_insumos):
+        self.id_insumos= id_insumos
     def setnombre(self,nombre):
         self.nombre= nombre
-    
-     
     # El siguiente metodo es para que nos retorne los atributos
-    
     def __str__(self) -> str:
-        return str (self.nombre)   
+        return self.id_insumos + self.nombre  
 
 #Ahora la clase conexion
 class ConectarInsumo:
@@ -247,17 +271,18 @@ class ConectarInsumo:
                 return resultados
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
-                
-    def crearInsumos(self, parametros): 
+                            
+    def insertarInsumo(self, insumo):
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "INSERT INTO bd_big_bread.insumos (id_insumos, nombre)VALUES(NULL, %s);" #El NULL sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
-                datos = ('nombre')
+                sentenciaSQL = "INSERT INTO insumos VALUES(NULL,%s);"
+                datos = (insumo.getnombre(),)
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()
                 self.conexion.close()
-                print("Dato insertado correctamente")
+                print("Insumo insertado correctamente")
 
             except mysql.connector.Error as cantidadError:
-                print("No se pudo conectar! debido: ", cantidadError);                   
+                print("No se pudo conectar! debido: ", cantidadError)               
+ 
