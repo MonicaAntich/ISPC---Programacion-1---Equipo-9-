@@ -252,7 +252,7 @@ class ConectarInsumo:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "INSERT INTO bd_big_bread.insumos (id_insumos, nombre)VALUES(NULL, %s);" #El NULL sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
+                sentenciaSQL = "INSERT INTO bd_big_bread.insumos (nombre)VALUES(NULL, %s);" #El NULL sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
                 datos = ('nombre')
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()
