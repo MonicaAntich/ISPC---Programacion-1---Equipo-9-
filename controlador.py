@@ -119,7 +119,7 @@ def listarInsumos():
         
 def crearInsumos():
     nombre = input("Ingrese el nombre del insumo: ")
-    cantidad = input("Ingrese la cantidad en grs: ")
+    # cantidad = input("Ingrese la cantidad en grs: ")
     
     productoNuevo = modelo.Insumo
     con = modelo.ConectarInsumo()

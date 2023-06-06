@@ -200,9 +200,9 @@ class ConectarRecetas:
 
 class Insumo():#Creamos el metodo constructor del objeto persona, en python se llama init. Esta es la formula
                #basica de la funcion constructora
-    def __init__(self, nombre, cantidad) -> None:  #Constructor con las variables
+    def __init__(self, nombre) -> None:  #Constructor con las variables
         self.nombre = nombre#Creamos el objeto
-        self.cantidad = cantidad #id y cantidad  son parametros, atributos
+         #id y cantidad  son parametros, atributos
       
         
 # Ahora se crean los setter and getter, porq si creamos un objeto y despues necesitamos hacer cambios no lo podriamos hacer
@@ -210,19 +210,17 @@ class Insumo():#Creamos el metodo constructor del objeto persona, en python se l
 
     def getnombre(self):
         return self.nombre
-    def getcantidad(self):
-        return self.cantidad
+    
          
 # Los set nos van a permitir definir, lo nuevo q quiera agregar o modificar
     def setnombre(self,nombre):
         self.nombre= nombre
-    def setnombre(self, cantidad):
-        self.cantidad = cantidad
+    
      
     # El siguiente metodo es para que nos retorne los atributos
     
     def __str__(self) -> str:
-        return str (self.nombre) + self.cantidad  
+        return str (self.nombre)   
 
 #Ahora la clase conexion
 class ConectarInsumo:
@@ -254,8 +252,8 @@ class ConectarInsumo:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "INSERT INTO bd_big_bread.insumos (id_insumos, descripcion, cantidad_insumos)VALUES(NULL, %s, %s);" #El NULL sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
-                datos = ('nombre, cantidad')
+                sentenciaSQL = "INSERT INTO bd_big_bread.insumos (id_insumos, nombre)VALUES(NULL, %s);" #El NULL sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
+                datos = ('nombre')
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()
                 self.conexion.close()
