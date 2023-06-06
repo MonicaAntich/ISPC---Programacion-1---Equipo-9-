@@ -63,7 +63,7 @@ def editarProducto():
         #input("\n Presione ENTER para continuar")
 
 #RECETAS-------------------------------------------------------------------------------------------------------------
-
+ 
 def listarRecetas():
 
     con = modelo.ConectarRecetas()

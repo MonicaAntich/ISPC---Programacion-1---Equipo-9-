@@ -225,7 +225,7 @@ class ConectarRecetas:
                 print("No se pudo conectar! debido: ", cantidadError)
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------
-
+  
 class Insumo:#Creamos el metodo constructor del objeto persona, en python se llama init. Esta es la formula basica de la funcion constructora
     def __init__(self, id_insumos, nombre) -> None:  #Constructor con las variables
         self.id_insumos= id_insumos
