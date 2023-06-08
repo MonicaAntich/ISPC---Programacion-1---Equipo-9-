@@ -68,17 +68,26 @@ def listarRecetas():
     con = modelo.ConectarRecetas()
     listado = con.listarRecetas()
     for lista in listado:
-        print(
-            " id receta: "+str(lista[0])+#si queremos mostrar el id seria con "id: " + str(lista[0])
-            " | Pizza nro: " + str(lista[1])+
-            " | Insumo: " + str(lista[3])+
-            " | Cantidad de insumo: " + str(lista[2])) 
-    #input("\n Presione ENTER para continuar")
+        print(str(lista[0])+
+            ": "+str(lista[1])+
+            " | Insumo: " + str(lista[2])+
+            " | Cantidad de insumo: " + str(lista[3]))
    
 def crearReceta():
-    pizza_nro = input("Ingrese el numero de pizza: ")
-    id_insumos = input("Ingrese el ID de insumo: ")
-    cantidad_insumos = input("Ingrese la cantidad de insumo en la pizza ")
+    con = modelo.ConectarProductos()
+    listado = con.listarProductos()
+    print("")
+    for producto in listado:
+        print(  str(producto[0])+": " + str(producto[1]) )
+    pizza_nro = input("\nIngrese el numero de pizza: ")
+    print("")
+    con = modelo.ConectarInsumo()
+    listado = con.listarInsumos()
+    for lista in listado:
+        print( str(lista[0])+": "+str(lista[1]))
+        
+    id_insumos = input("\nIngrese el numero de insumo: ")
+    cantidad_insumos = input("Ingrese la cantidad de insumo: ")
     
     
     productoNuevo = modelo.Recetas(0, pizza_nro,cantidad_insumos,id_insumos)
@@ -168,9 +177,9 @@ def listarProduccionDiaria ():
     
     print ("")         
     for lista in listado:
-        print( "fecha: " + str(lista [0] ) + 
-           " | pizza :  " + str(lista [1] ) +
-           " | cantidad : " + str(lista [2] ) )
+        print( "Fecha: " + str(lista[0]) + 
+                " | " + str(lista[2])+
+           " " + str(lista[1])+"s")
     
     
 def crearProduccion():

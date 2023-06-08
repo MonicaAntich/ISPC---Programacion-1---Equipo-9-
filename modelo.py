@@ -152,7 +152,9 @@ class ConectarRecetas:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "SELECT * FROM recetas;"
+                #sentenciaSQL = "SELECT * FROM recetas;"
+                #sentenciaSQL = "SELECT productos.nombre, insumos.nombre, recetas.cantidad_insumos  from recetas  INNER JOIN productos  on recetas.pizza_nro=productos.id_producto INNER JOIN insumos on recetas.id_insumos=insumos.id_insumos;"
+                sentenciaSQL = "SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos  from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos;"
                 cursor.execute(sentenciaSQL)
                 resultados = cursor.fetchall()
                 self.conexion.close()
@@ -164,7 +166,7 @@ class ConectarRecetas:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "INSERT INTO recetas VALUES(NULL,%s,%s,%s);" #El NULL sería el id que se pone solo cuando insertamos un dato. Cada atributo que se agregue en datos, debera llevar una %s en la sentencia
+                sentenciaSQL = "INSERT INTO recetas VALUES(NULL,%s,%s,%s);" 
                 datos = (parametro.getpizza_nro(),
                          parametro.getcantidad_insumos(), 
                          parametro.getid_insumos())
