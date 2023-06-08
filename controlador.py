@@ -168,9 +168,9 @@ def listarProduccionDiaria ():
     
     print ("")         
     for lista in listado:
-        print( "fecha: " + str(lista [1] ) + 
-          "id_producto : " + str(lista [3] ) +
-           "cantidad : " + str(lista [2] ) )
+        print( "fecha: " + str(lista [0] ) + 
+           " | pizza :  " + str(lista [1] ) +
+           " | cantidad : " + str(lista [2] ) )
     
     
 def crearProduccion():

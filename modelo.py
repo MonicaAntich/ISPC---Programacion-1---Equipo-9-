@@ -331,11 +331,12 @@ class ConectarProduccion:
         if self.conexion.is_connected ():
              try:
                  cursor = self.conexion.cursor()
-                 sentenciasql = "SELECT * FROM produccion_diaria; "
-                 cursor.execute(sentenciasql)
+                 #sentenciasql = "SELECT * FROM produccion_diaria; "
+                 sentenciaSQL = "SELECT a.fecha, b.nombre, a.cantidad from produccion_diaria a INNER JOIN productos b on a.id_producto=b.id_producto;"
+                 
+                 cursor.execute(sentenciaSQL)
                  resultados = cursor.fetchall ()
                  self.conexion.close ()
-                 
                  return resultados 
              except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar debido: ", cantidadError)
