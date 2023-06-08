@@ -27,9 +27,15 @@ while True:
 
         menu = input("\nSeleccione una opción: ")
 
-        if menu=="1":#PRODUCCION DEL DÍA-----------------------------------------------------------------------------------------------------
+        if menu == "1":#PRODUCCION DEL DÍA-----------------------------------------------------------------------------------------------------
             print("""\n 1) Mostrar producciones   2) Ingresar produccion del día   3) Eliminar una produccion   4) Editar produccion""")
-
+            menuProduccion = input("\n Seleccione una opción: ")
+            if menuProduccion == "1": 
+                controlador.listarProduccionDiaria ()
+            elif menuProduccion == "2":
+                controlador.crearProduccion()
+                
+                
         elif menu == "2":#PRODUCTOS-----------------------------------------------------------------------------------------------------------
             print("""PRODUCTOS \n\n 1) Mostrar pizzas   2) Insertar un producto    3) Eliminar producto   4) Editar producto""")
             
@@ -42,7 +48,6 @@ while True:
                 controlador.eliminarProducto()
             elif menuProducto == "4":    
                  controlador.editarProducto()
-            
         elif menu == "3":#RECETAS-----------------------------------------------------------------------------------------------------------
             print("""RECETAS  \n\n 1) Mostrar recetas    2) Insertar receta    3) Eliminar receta   4) Editar receta""")
             
@@ -69,6 +74,10 @@ while True:
             
             #-------------------------------------------------------------------------------------------------------------
        
-        elif menu == "5":print("\nOff"); exit()#SALIR
+        elif menu == "5":
+            
+            print("\n Off"); exit()#SALIR
         else: print("Opcion no valida")
-
+        
+             
+            

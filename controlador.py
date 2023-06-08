@@ -1,7 +1,6 @@
 # TODAS LAS FUNCIONALIDADES DEL PROYECTO
 import modelo
 
-#PRODUCCCION DIARIA----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -162,4 +161,27 @@ def crearInsumo():
     con = modelo.ConectarInsumo()
     con.insertarInsumo(productoNuevo)
            
+#PRODUCCCION DIARIA----------------------------------------------------------------------------------------------------------------
+def listarProduccionDiaria ():
+    con = modelo.ConectarProduccion ()
+    listado = con.listarProduccion()
+    
+    print ("")         
+    for lista in listado:
+        print( "fecha: " + str(lista [1] ) + 
+          "id_producto : " + str(lista [3] ) +
+           "cantidad : " + str(lista [2] ) )
+    
+    
+def crearProduccion():
+    cantidad =input ("Ingrese la cantidad: ")
+    id_producto = input("Ingrese el id del producto: ")
+    productoNuevo = modelo.Produccion_diaria(0, 0, cantidad, id_producto)
+    con = modelo.ConectarProduccion()
+    con.insertarProduccion (productoNuevo)
+        
+        
+        
+        
+        
     

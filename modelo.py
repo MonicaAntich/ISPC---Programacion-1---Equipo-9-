@@ -284,5 +284,84 @@ class ConectarInsumo:
                 print("Insumo insertado correctamente")
 
             except mysql.connector.Error as cantidadError:
-                print("No se pudo conectar! debido: ", cantidadError)               
+                print("No se pudo conectar! debido: ", cantidadError)  
+                
+class Produccion_diaria:
+    
+    def __init__(self, ip_pd, fecha, cantidad, id_producto)->None:
+        self.ip_pd = ip_pd
+        self.fecha = fecha
+        self.cantidad = cantidad
+        self.id_producto = id_producto
+    def getip_pd (self):
+        return self.ip_pd
+    def getfecha (self):
+        return self.fecha
+    def getcantidad (self):
+        return self.cantidad
+    def getid_producto (self):
+        return self.id_producto 
+    
+    def setip_pd (self, ip_pd):
+        self.ip_pd = ip_pd
+    def setfecha (self, fecha):
+        self.fecha = fecha
+    def setcantidad (self, cantidad):
+        self.cantidad = cantidad
+    def setid_producto (self, id_producto):
+        self.id_producto = id_producto
+        
+    def __str__(self) -> str:
+        return self.ip_pd + self.fecha + self.cantidad + self.id_producto 
+    
+class ConectarProduccion:
+    def __init__(self) -> None:
+        try:
+            self.conexion = mysql.connector.connect(
+                host = 'brokergrupo6.ddns.net',
+                port = 3306,
+                user = 'grupo9',
+                password = 'grupo9',
+                db='bd_big_bread'
+            )
+        except mysql.connector.Error as cantidadError:
+            print("No se pudo conectar debido: ", cantidadError)
+            
+    def listarProduccion (self):
+        if self.conexion.is_connected ():
+             try:
+                 cursor = self.conexion.cursor()
+                 sentenciasql = "SELECT * FROM produccion_diaria; "
+                 cursor.execute(sentenciasql)
+                 resultados = cursor.fetchall ()
+                 self.conexion.close ()
+                 
+                 return resultados 
+             except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar debido: ", cantidadError)
+                
+    def insertarProduccion (self, parametro):
+        
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "INSERT INTO produccion_diaria VALUES (NULL, current_timestamp, %s, %s);"
+                datos  = (
+                        parametro.getcantidad(), 
+                        parametro.getid_producto(),)
+                cursor.execute(sentenciaSQL, datos)
+                self.conexion.commit()
+                self.conexion.close()
+                print("Producción insertada correctamente")
+            except mysql.connecto.Error as cantidadError:
+                print("No se pudo conectar debido: ", cantidadError)
+                
+                
+                
+    
+        
+    
+    
+    
+                      
  
