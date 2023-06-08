@@ -23,7 +23,7 @@ while True:
               2) Productos    
               3) Recetas   
               4) Insumos    
-              5) Salir  """)
+              5) Salir  """) 
 
         menu = input("\nSeleccione una opción: ")
 
