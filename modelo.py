@@ -18,7 +18,6 @@ class Productos:
         self.nombre = nombre
     def __str__(self) -> str:
         return self.id_producto +  self.nombre 
-
 class ConectarProductos:
     def __init__(self) -> None:
         try:
@@ -134,7 +133,6 @@ class Recetas:
 
     def __str__(self) -> str:
         return self.id_receta + self.pizza_nro +  self.cantidad_insumos + self.id_insumos
-
 class ConectarRecetas:
     def __init__(self) -> None:
         try:
@@ -155,7 +153,21 @@ class ConectarRecetas:
                 #sentenciaSQL = "SELECT * FROM recetas;"
                 #sentenciaSQL = "SELECT productos.nombre, insumos.nombre, recetas.cantidad_insumos  from recetas  INNER JOIN productos  on recetas.pizza_nro=productos.id_producto INNER JOIN insumos on recetas.id_insumos=insumos.id_insumos;"
                 sentenciaSQL = "SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos  from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos;"
+                
                 cursor.execute(sentenciaSQL)
+                resultados = cursor.fetchall()
+                self.conexion.close()
+                return resultados
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
+                
+    def listarRecetasDescripcion(self,pizza_nro):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL="SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos  from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE b.id_producto=%s;"
+                datos=(pizza_nro,)
+                cursor.execute(sentenciaSQL,datos)
                 resultados = cursor.fetchall()
                 self.conexion.close()
                 return resultados
@@ -247,9 +259,8 @@ class Insumo:#Creamos el metodo constructor del objeto persona, en python se lla
     # El siguiente metodo es para que nos retorne los atributos
     def __str__(self) -> str:
         return self.id_insumos + self.nombre  
+class ConectarInsumo:#Ahora la clase conexion
 
-#Ahora la clase conexion
-class ConectarInsumo:
     def __init__(self) -> None:
         try:
             self.conexion = mysql.connector.connect(
@@ -287,9 +298,10 @@ class ConectarInsumo:
 
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)  
+      
+#-------------------------------------------------------------------------------------------------------------------------------------------------
                 
 class Produccion_diaria:
-    
     def __init__(self, ip_pd, fecha, cantidad, id_producto)->None:
         self.ip_pd = ip_pd
         self.fecha = fecha
@@ -314,8 +326,7 @@ class Produccion_diaria:
         self.id_producto = id_producto
         
     def __str__(self) -> str:
-        return self.ip_pd + self.fecha + self.cantidad + self.id_producto 
-    
+        return self.ip_pd + self.fecha + self.cantidad + self.id_producto   
 class ConectarProduccion:
     def __init__(self) -> None:
         try:
@@ -359,12 +370,43 @@ class ConectarProduccion:
             except mysql.connecto.Error as cantidadError:
                 print("No se pudo conectar debido: ", cantidadError)
                 
+    def listarProduccionTotal (self):
+        if self.conexion.is_connected ():
+             try:
+                 cursor = self.conexion.cursor()
+                 #La misma retornará los insumos con sus cantidades requeridas para la producción indicada. 
+                 sentenciaSQL = "SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos * d.cantidad   from recetas a  INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN produccion_diaria d on b.id_producto=d.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE pizza_nro='2'"
+                 
+                 sentenciaSQL = "SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos * d.cantidad   from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN produccion_diaria d on b.id_producto=d.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE d.fecha='2023-06-06' and pizza_nro='2'"
                 
+                 #•Producción total de un día ingresado.
+                 sentenciaSQL="SELECT a.fecha, b.nombre, a.cantidad from produccion_diaria a INNER JOIN productos b on a.id_producto=b.id_producto  WHERE a.fecha='2023-06-06'"
+                 sentenciaSQL =" SELECT a.id_receta,d.fecha, b.nombre, c.nombre, a.cantidad_insumos * d.cantidad   from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN produccion_diaria d on b.id_producto=d.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE d.fecha='2023-06-06'"
+                 
+                 #•Cantidad de insumos utilizados en un día ingresado. 
+                 sentenciaSQL="SELECT d.fecha, c.nombre, a.cantidad_insumos * d.cantidad   from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN produccion_diaria d on b.id_producto=d.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE d.fecha='2023-06-06'"
+                 
+                 
+                 #•Producción total de un rango de tiempo ingresado.
+                 sentenciaSQL="SELECT a.fecha, b.nombre, a.cantidad from produccion_diaria a INNER JOIN productos b on a.id_producto=b.id_producto WHERE a.fecha >= '2023-06-07' AND a.fecha < '2023-06-10'"
+                 sentenciaSQL="SELECT a.id_receta,d.fecha, b.nombre, c.nombre, a.cantidad_insumos * d.cantidad   from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN produccion_diaria d on b.id_producto=d.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE d.fecha >= '2023-06-07' AND d.fecha < '2023-06-10'"
+                 cursor.execute(sentenciaSQL)
+                 resultados = cursor.fetchall ()
+                 self.conexion.close ()
+                 return resultados 
+             except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar debido: ", cantidadError)       
                 
+   
+   
+   
     
-        
+
+
+       
     
     
-    
+
+
                       
  
