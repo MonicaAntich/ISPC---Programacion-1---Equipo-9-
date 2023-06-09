@@ -60,5 +60,5 @@ LISTAR todos los insumos para la producción de un día específico.
 DNS:        brokergrupo6.ddns.net<br>
 puerto:     3306<br>
 Usuario:    grupo9<br>
-Password:   grupo9<br>
+Password:   *********
 
