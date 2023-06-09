@@ -34,8 +34,8 @@ while True:
                 controlador.listarProduccionDiaria ()
             elif menuProduccion == "2":
                 controlador.crearProduccion()
-                
-                
+            
+                            
         elif menu == "2":#PRODUCTOS-----------------------------------------------------------------------------------------------------------
             print("""PRODUCTOS \n\n 1) Mostrar pizzas   2) Insertar un producto    3) Eliminar producto   4) Editar producto""")
             
@@ -48,8 +48,10 @@ while True:
                 controlador.eliminarProducto()
             elif menuProducto == "4":    
                  controlador.editarProducto()
+              
+                 
         elif menu == "3":#RECETAS-----------------------------------------------------------------------------------------------------------
-            print("""RECETAS  \n\n 1) Mostrar recetas    2) Insertar receta    3) Eliminar receta   4) Editar receta""")
+            print("""RECETAS  \n\n 1) Mostrar recetas    2) Insertar receta    3) Eliminar receta   4) Editar receta   5)Descripcion""")
             
             menuReceta = input("\n-Seleccione una opción:")
             if menuReceta == "1":
@@ -60,6 +62,9 @@ while True:
                 controlador.eliminarReceta()
             elif menuReceta == "4":
                 controlador.editarReceta() 
+            elif menuReceta == "5":
+                controlador.descripcionRecetas() 
+               
                                                  
         elif menu == "4":#INSUMOS-----------------------------------------------------------------------------------------------------------
             print("""INSUMOS \n\n 1) Mostrar insumos    2) Insertar insumo    """)
@@ -73,6 +78,7 @@ while True:
             #     controlador.eliminarInsumos() 
             
             #-------------------------------------------------------------------------------------------------------------
+       
        
         elif menu == "5":
             
