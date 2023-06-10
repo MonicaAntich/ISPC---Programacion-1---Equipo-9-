@@ -1,9 +1,13 @@
 # MODULO QUE EL USUARIO VE E INTERACTUA CON EL PROGRAMA
 import controlador
+from colorama import init,Fore,Back,Style #Para dar color cuando trabajamos por consola
+init(autoreset=True) # Para que solo se de color a parte que queremos, debemos inicializar 
+                     # el módulo con init(autoreset=True)
+                    
 
-
-print("""---------------------------------------------------------------------------------------------
-|            ISPC Tecnico Superior en Innovacion 4.0               Cohorte 2023             |
+print(Fore.BLACK+Back.WHITE+"""
+---------------------------------------------------------------------------------------------
+|            ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0  Cohorte 2023      |
 |-------------------------------------------------------------------------------------------|
 |            Materia  : Programacion y Base de datos Lenguaje : Python 1er año              |
 |            Profesor : Kevin  Kessler                                                      |
@@ -13,19 +17,23 @@ print("""-----------------------------------------------------------------------
 |                       Palacio Braian                                                      |
 |                       Antich Monica                                                       |
 ---------------------------------------------------------------------------------------------""")
+#Fore es una constante (de la libreria colorama) que junto al color, muestra los colores en las palabras
+#.BLACK para cambiar el fondo
 
  
-print("BUENOS DIAS ¿QUE OPERACION DESEA REALIZAR?")    
+print(Fore.BLACK+Back.WHITE+"""\n
+                            BUENOS DIAS ¿QUE OPERACION DESEA REALIZAR?                       """)    
 
 while True:
-        print("""\n 
-              1) Produccion del día  2) Productos 3) Recetas 4) Insumos 5) Salir  """) 
+    
+        print(Fore.BLACK+Back.GREEN+"""\n    1) Produccion del día   2) Productos   3) Recetas   4) Insumos   5) Salir                """) 
 
-        menu = input("\nSeleccione una opción: ")
+        menu = input(Fore.BLACK+Back.GREEN+
+            """\nSeleccione una opción: """)
 
         if menu == "1":#PRODUCCION DEL DÍA-----------------------------------------------------------------------------------------------------
             print("""\n 1) Mostrar producciones   2) Ingresar produccion del día   3) Eliminar una produccion   4) Editar produccion""")
-            menuProduccion = input("\n Seleccione una opción: ")
+            menuProduccion = input("\nSeleccione una opción: ")
             if menuProduccion == "1": 
                 controlador.listarProduccionDiaria ()
             elif menuProduccion == "2":
