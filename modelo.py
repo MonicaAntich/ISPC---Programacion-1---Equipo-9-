@@ -285,12 +285,12 @@ class ConectarInsumo:#Ahora la clase conexion
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
                             
-    def insertarInsumo(self, insumo):
+    def insertarInsumo(self, insumos):
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
                 sentenciaSQL = "INSERT INTO insumos VALUES(NULL,%s);"
-                datos = (insumo.getnombre(),)
+                datos = (insumos.getnombre(),)
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()
                 self.conexion.close()
@@ -298,6 +298,20 @@ class ConectarInsumo:#Ahora la clase conexion
 
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)  
+             
+    def eliminarInsumo(self, parametro):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "DELETE FROM insumos WHERE id_insumos = %s;"
+
+                datos = (parametro.getid_insumos(),)
+                cursor.execute(sentenciaSQL, datos)
+                self.conexion.commit()
+                self.conexion.close()
+                print("Insumo eliminado correctamente")
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)            
       
 #-------------------------------------------------------------------------------------------------------------------------------------------------
                 

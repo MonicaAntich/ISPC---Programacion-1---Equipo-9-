@@ -26,10 +26,9 @@ print(Fore.BLACK+Back.WHITE+"""\n
 
 while True:
     
-        print(Fore.BLACK+Back.GREEN+"""\n    1) Produccion del día   2) Productos   3) Recetas   4) Insumos   5) Salir                """) 
+        print("""\n    1) Produccion del día   2) Productos   3) Recetas   4) Insumos   5) Salir""") 
 
-        menu = input(Fore.BLACK+Back.GREEN+
-            """\nSeleccione una opción: """)
+        menu = input( """\nSeleccione una opción: """)
 
         if menu == "1":#PRODUCCION DEL DÍA-----------------------------------------------------------------------------------------------------
             print("""\n 1) Mostrar producciones   2) Ingresar produccion del día   3) Eliminar una produccion   4) Editar produccion""")
@@ -71,15 +70,17 @@ while True:
                
                                                  
         elif menu == "4":#INSUMOS-----------------------------------------------------------------------------------------------------------
-            print("""INSUMOS \n\n 1) Mostrar insumos    2) Insertar insumo    """)
+            print("""INSUMOS \n\n 1) Mostrar insumos    2) Insertar Insumo   3) Eliminar Insumo  """)
             
             menuInsumo = input("\n-Seleccione una opción: ")
             if menuInsumo == "1":
                 controlador.listarInsumos()
             elif menuInsumo == "2":
                 controlador.crearInsumo()
-            # elif menuInsumo == "3":
-            #     controlador.eliminarInsumos() 
+            elif menuInsumo == "3":
+                controlador.eliminarInsumo() 
+            # elif menuInsumo == "4":
+            #     controlador.editarInsumo()    
             
             #-------------------------------------------------------------------------------------------------------------
        
