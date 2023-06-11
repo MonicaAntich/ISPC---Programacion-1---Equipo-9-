@@ -182,6 +182,21 @@ def crearInsumo():
 
     con = modelo.ConectarInsumo()
     con.insertarInsumo(productoNuevo)
+    
+def eliminarInsumo():
+    con = modelo.ConectarInsumo()
+    listado = con.listarInsumos()
+    print("")
+    for lista in listado:
+        print(
+            " Numero: "+str(lista[0])+ " Nombre: "+str(lista[1])) 
+
+    id_insumos= int(input("\nIngrese el Nro de insumo a eliminar: "))
+
+    con = modelo.ConectarInsumo()
+    producto = modelo.Insumo(id_insumos, " ")
+
+    con.eliminarInsumo(producto)    
            
 #PRODUCCCION DIARIA----------------------------------------------------------------------------------------------------------------
 
