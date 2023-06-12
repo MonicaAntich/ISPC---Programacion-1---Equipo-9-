@@ -22,17 +22,21 @@ print(Fore.BLACK+Back.WHITE+"""
 
  
 print(Fore.BLACK+Back.WHITE+"""\n
-                            BUENOS DIAS ¿QUE OPERACION DESEA REALIZAR?                       """)    
+                            Buenos días, ¿qué operacion desea realizar?                       """)    
 
 while True:
-    
-        print("""\n    1) Produccion del día   2) Productos   3) Recetas   4) Insumos   5) Salir""") 
+        print(Fore.GREEN+Style.BRIGHT+"""\n    1) Producción del día    """+Fore.BLUE+"""2) Productos    """+Fore.LIGHTMAGENTA_EX+"""3) Recetas    """+Fore.YELLOW+"""4) Insumos    """+Fore.RED+   """5) Salir                """) 
 
-        menu = input( """\nSeleccione una opción: """)
+        menu = input(Fore.WHITE+
+            """\nSeleccione una opción: """)
 
         if menu == "1":#PRODUCCION DEL DÍA-----------------------------------------------------------------------------------------------------
-            print("""\n 1) Mostrar producciones   2) Ingresar produccion del día   3) Eliminar una produccion   4) Editar produccion""")
-            menuProduccion = input("\nSeleccione una opción: ")
+            print(Fore.GREEN+Style.BRIGHT+"""
+------------------------  
+|  Producción del día  |
+------------------------""")
+            print(Fore.GREEN+"""\n1) Mostrar producciones   2) Ingresar produccion del día   3) Eliminar una produccion   4) Editar produccion""")
+            menuProduccion = input(Fore.GREEN+"\n-Seleccione una opción: ")
             if menuProduccion == "1": 
                 controlador.listarProduccionDiaria ()
             elif menuProduccion == "2":
@@ -40,9 +44,13 @@ while True:
             
                             
         elif menu == "2":#PRODUCTOS-----------------------------------------------------------------------------------------------------------
-            print("""PRODUCTOS \n\n 1) Mostrar pizzas   2) Insertar un producto    3) Eliminar producto   4) Editar producto""")
+            print(Fore.BLUE+Style.BRIGHT+"""
+***************
+*  Productos  *
+***************""")
+            print(Fore.BLUE+""" \n1) Mostrar pizzas   2) Insertar un producto    3) Eliminar producto   4) Editar producto""")
             
-            menuProducto = input("\n-Seleccione una opción: ")
+            menuProducto = input(Fore.BLUE+"\n-Seleccione una opción: ")
             if menuProducto == "1":
                 controlador.listarProductos()
             elif menuProducto == "2":
@@ -54,9 +62,13 @@ while True:
               
                  
         elif menu == "3":#RECETAS-----------------------------------------------------------------------------------------------------------
-            print("""RECETAS  \n\n 1) Mostrar recetas    2) Insertar receta    3) Eliminar receta   4) Editar receta   5)Descripcion""")
+            print(Fore.LIGHTMAGENTA_EX+Style.BRIGHT+"""
+*************
+*  Recetas  *
+*************""")
+            print(Fore.LIGHTMAGENTA_EX+"""\n1) Mostrar recetas    2) Insertar receta    3) Eliminar receta   4) Editar receta   5)Descripcion""")
             
-            menuReceta = input("\n-Seleccione una opción:")
+            menuReceta = input(Fore.LIGHTMAGENTA_EX+"\n-Seleccione una opción: ")
             if menuReceta == "1":
                 controlador.listarRecetas()
             elif menuReceta == "2":
@@ -70,9 +82,13 @@ while True:
                
                                                  
         elif menu == "4":#INSUMOS-----------------------------------------------------------------------------------------------------------
-            print("""INSUMOS \n\n 1) Mostrar insumos    2) Insertar Insumo   3) Eliminar Insumo  """)
+            print(Fore.YELLOW+Style.BRIGHT+"""
+*************
+*  Insumos  *
+*************""")
+            print(Fore.YELLOW+"""\n1) Mostrar insumos    2) Insertar Insumo   3) Eliminar Insumo  """)
             
-            menuInsumo = input("\n-Seleccione una opción: ")
+            menuInsumo = input(Fore.YELLOW+"\n-Seleccione una opción: ")
             if menuInsumo == "1":
                 controlador.listarInsumos()
             elif menuInsumo == "2":
@@ -85,10 +101,10 @@ while True:
             #-------------------------------------------------------------------------------------------------------------
        
        
-        elif menu == "5":
+        elif menu == "5":#SALIR
             
-            print("\n Off"); exit()#SALIR
-        else: print("Opcion no valida")
+            print(Fore.RED+"\n Muchas gracias, adios."); exit()
+        else: print(Fore.RED+"Opcion no valida")
         
              
             
