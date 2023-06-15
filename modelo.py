@@ -311,8 +311,40 @@ class ConectarInsumo:#Ahora la clase conexion
                 self.conexion.close()
                 print("Insumo eliminado correctamente")
             except mysql.connector.Error as cantidadError:
-                print("No se pudo conectar! debido: ", cantidadError)            
-      
+                print("No se pudo conectar! debido: ", cantidadError)   
+     
+    def buscarInsumo(self, id_insumos):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM insumos WHERE id_insumos = %s;"
+                datos = (id_insumos,)
+                cursor.execute(sentenciaSQL, datos)
+                resultados = cursor.fetchone()
+                self.conexion.commit()
+                self.conexion.close()
+                return resultados
+
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
+    
+    def modificarInsumo(self, insumo):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "UPDATE insumos SET id_insumos=%s WHERE nombre= %s;"
+
+                datos = (insumo.getid_insumos(),
+                         insumo.getnombre(),)
+
+                cursor.execute(sentenciaSQL, datos)
+                self.conexion.commit()
+                self.conexion.close()
+                print("Insumo actualizado correctamente")
+
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)                    
+     
 #-------------------------------------------------------------------------------------------------------------------------------------------------
                 
 class Produccion_diaria:

@@ -86,7 +86,7 @@ while True:
 *************
 *  Insumos  *
 *************""")
-            print(Fore.YELLOW+"""\n1) Mostrar insumos    2) Insertar Insumo   3) Eliminar Insumo  """)
+            print(Fore.YELLOW+"""\n1) Mostrar insumos    2) Insertar Insumo   3) Eliminar Insumo   4) Editar Insumo  """)
             
             menuInsumo = input(Fore.YELLOW+"\n-Seleccione una opción: ")
             if menuInsumo == "1":
@@ -95,8 +95,8 @@ while True:
                 controlador.crearInsumo()
             elif menuInsumo == "3":
                 controlador.eliminarInsumo() 
-            # elif menuInsumo == "4":
-            #     controlador.editarInsumo()    
+            elif menuInsumo == "4":
+                controlador.editarInsumo()    
             
             #-------------------------------------------------------------------------------------------------------------
        
