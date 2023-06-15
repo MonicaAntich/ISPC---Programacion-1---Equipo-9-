@@ -196,7 +196,34 @@ def eliminarInsumo():
     con = modelo.ConectarInsumo()
     producto = modelo.Insumo(id_insumos, " ")
 
-    con.eliminarInsumo(producto)    
+    con.eliminarInsumo(producto)   
+    
+     
+def editarInsumo():
+    con = modelo.ConectarInsumo()
+    listado = con.listarInsumos()
+    print("")
+    for lista in listado:
+        print("Numero "+str(lista[0]) +
+              " Nombre: " + str(lista[1]))
+
+    id_insumos = int(input("\nIngrese el Nro de insumo a editar: "))
+    con = modelo.ConectarInsumo()
+    contacto = con.buscarInsumo(id_insumos)
+    if contacto == None:
+        print("\nLa busqueda no arrojo resultados")
+    else:
+        print("Numero "+str(lista[0]) +
+              " Nombre: " + str(lista[1]))
+
+        nombre = input("\n Ingrese el nuevo nombre o Enter para omitir: ")
+        if nombre == "":
+            nombre = lista[1]
+            
+        datoEditado = modelo.Insumo(id_insumos, nombre,)
+
+        conEdit = modelo.ConectarInsumo()
+        conEdit.modificarInsumo(datoEditado)
            
 #PRODUCCCION DIARIA----------------------------------------------------------------------------------------------------------------
 
