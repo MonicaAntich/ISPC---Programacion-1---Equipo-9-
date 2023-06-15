@@ -414,7 +414,7 @@ class ConectarProduccion:
                 self.conexion.commit()
                 self.conexion.close()
                 print("Producción insertada correctamente")
-            except mysql.connecto.Error as cantidadError:
+            except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar debido: ", cantidadError)
                 
     def listarProduccionTotal (self):
