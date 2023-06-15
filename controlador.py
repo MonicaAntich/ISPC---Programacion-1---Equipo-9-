@@ -135,16 +135,19 @@ def editarReceta():
             " | Insumo: " + str(contacto[3])+
             " | Cantidad de insumo: " + str(contacto[2]))  
 
-        Pizza_nro = input("\n Ingrese el nuevo numero de pizza o Enter para omitir: ")
-        if Pizza_nro == "":
-            Pizza_nro = lista[1]
-        cantidad_insumos = input("\n Ingrese la nueva cantidad de insumos nombre o Enter para omitir: ")
+
+        cantidad_insumos = input("\n Ingrese la nueva cantidad de insumos  o Enter para omitir: ")
         if cantidad_insumos == "":
             cantidad_insumos = lista[2]   
+        con = modelo.ConectarInsumo()
+        listado = con.listarInsumos()
+        for lista in listado:
+            print("ID: "+str(lista[0])+
+                " insumo: "+str(lista[1]))
         id_insumos = input("\n Ingrese el nuevo id de insumo o Enter para omitir: ")
         if id_insumos == "":
             id_insumos = lista[3] 
-        datoEditado = modelo.Recetas(id_receta, Pizza_nro,cantidad_insumos,id_insumos,)
+        datoEditado = modelo.Recetas(id_receta,'',cantidad_insumos,id_insumos,)
 
         conEdit = modelo.ConectarRecetas()
         conEdit.modificarRecetas(datoEditado)
@@ -235,7 +238,13 @@ def listarProduccionDiaria ():
         
 def crearProduccion():
     cantidad =input ("Ingrese la cantidad: ")
+    con = modelo.ConectarProductos()
+    listado = con.listarProductos()
+    print("")
+    for producto in listado:
+        print( str(producto[0])+" Pizza: " + str(producto[1]) )
     id_producto = input("Ingrese el id del producto: ")
+    
     productoNuevo = modelo.Produccion_diaria(0, 0, cantidad, id_producto)
     con = modelo.ConectarProduccion()
     con.insertarProduccion (productoNuevo)
