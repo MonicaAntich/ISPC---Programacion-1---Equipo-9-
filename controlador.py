@@ -40,21 +40,19 @@ def editarProducto():
         print("ID "+str(lista[0]) +
               " || Pizza: " + str(lista[1]))
 
-    id_producto = int(input("\nIngrese el ID del producto a editar: "))
+    id = int(input("\nIngrese el ID del producto a editar: "))
     con = modelo.ConectarProductos()
-    contacto = con.buscarProducto(id_producto)
-
+    contacto = con.buscarProducto(id)
     if contacto == None:
         print("\nLa busqueda no arrojo resultados")
     else:
-        print("ID "+str(lista[0]) +
-              " || Pizza: " + str(lista[1]))
+        print("ID "+str(contacto[0]) + " || Pizza: " + str(contacto[1]))
 
         nombre = input("\n Ingrese el nuevo nombre o Enter para omitir: ")
         if nombre == "":
             nombre = lista[1]
             
-        datoEditado = modelo.Productos(id_producto, nombre,)
+        datoEditado = modelo.Productos(id, nombre,)
 
         conEdit = modelo.ConectarProductos()
         conEdit.modificarProductos(datoEditado)
@@ -132,10 +130,10 @@ def editarReceta():
         print("\nLa busqueda no arrojo resultados")
     else:
         print(
-            " id receta: "+str(lista[0])+
-            " | Pizza nro: " + str(lista[1])+
-            " | Insumo: " + str(lista[3])+
-            " | Cantidad de insumo: " + str(lista[2]))  
+            " id receta: "+str(contacto[0])+
+            " | Pizza nro: " + str(contacto[1])+
+            " | Insumo: " + str(contacto[3])+
+            " | Cantidad de insumo: " + str(contacto[2]))  
 
         Pizza_nro = input("\n Ingrese el nuevo numero de pizza o Enter para omitir: ")
         if Pizza_nro == "":
@@ -192,10 +190,8 @@ def eliminarInsumo():
             " Numero: "+str(lista[0])+ " Nombre: "+str(lista[1])) 
 
     id_insumos= int(input("\nIngrese el Nro de insumo a eliminar: "))
-
     con = modelo.ConectarInsumo()
     producto = modelo.Insumo(id_insumos, " ")
-
     con.eliminarInsumo(producto)   
     
      
@@ -204,17 +200,17 @@ def editarInsumo():
     listado = con.listarInsumos()
     print("")
     for lista in listado:
-        print("Numero "+str(lista[0]) +
+        print("Nro: "+str(lista[0]) +
               " Nombre: " + str(lista[1]))
 
-    id_insumos = int(input("\nIngrese el Nro de insumo a editar: "))
+    id_insumos = int(input("\nIngrese el nro de insumo a editar: "))
     con = modelo.ConectarInsumo()
     contacto = con.buscarInsumo(id_insumos)
     if contacto == None:
         print("\nLa busqueda no arrojo resultados")
     else:
-        print("Numero "+str(lista[0]) +
-              " Nombre: " + str(lista[1]))
+        print("Numero "+str(contacto[0]) +
+              " Nombre: " + str(contacto[1]))
 
         nombre = input("\n Ingrese el nuevo nombre o Enter para omitir: ")
         if nombre == "":
@@ -246,7 +242,3 @@ def crearProduccion():
     
         
         
-        
-        
-        
-    

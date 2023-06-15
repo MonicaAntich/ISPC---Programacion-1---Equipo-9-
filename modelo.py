@@ -71,17 +71,17 @@ class ConectarProductos:
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
                 
-    def buscarProducto(self, id_producto):
+    def buscarProducto(self, id):
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
                 sentenciaSQL = "SELECT * FROM productos WHERE id_producto = %s;"
-                datos = (id_producto,)
+                datos = (id,)
                 cursor.execute(sentenciaSQL, datos)
-                resultados = cursor.fetchone()
+                r = cursor.fetchone()
                 self.conexion.commit()
                 self.conexion.close()
-                return resultados
+                return r
 
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
@@ -332,10 +332,11 @@ class ConectarInsumo:#Ahora la clase conexion
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "UPDATE insumos SET id_insumos=%s WHERE nombre= %s;"
+                sentenciaSQL = "UPDATE insumos SET nombre=%s WHERE id_insumos= %s;"
 
-                datos = (insumo.getid_insumos(),
-                         insumo.getnombre(),)
+                datos = (
+                         insumo.getnombre(),
+                         insumo.getid_insumos(),)
 
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()

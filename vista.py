@@ -45,9 +45,9 @@ while True:
                             
         elif menu == "2":#PRODUCTOS-----------------------------------------------------------------------------------------------------------
             print(Fore.BLUE+Style.BRIGHT+"""
-***************
-*  Productos  *
-***************""")
+---------------
+|  Productos  |
+---------------""")
             print(Fore.BLUE+""" \n1) Mostrar pizzas   2) Insertar un producto    3) Eliminar producto   4) Editar producto""")
             
             menuProducto = input(Fore.BLUE+"\n-Seleccione una opción: ")
@@ -63,9 +63,9 @@ while True:
                  
         elif menu == "3":#RECETAS-----------------------------------------------------------------------------------------------------------
             print(Fore.LIGHTMAGENTA_EX+Style.BRIGHT+"""
-*************
-*  Recetas  *
-*************""")
+-------------
+|  Recetas  |
+-------------""")
             print(Fore.LIGHTMAGENTA_EX+"""\n1) Mostrar recetas    2) Insertar receta    3) Eliminar receta   4) Editar receta   5)Descripcion""")
             
             menuReceta = input(Fore.LIGHTMAGENTA_EX+"\n-Seleccione una opción: ")
@@ -83,9 +83,9 @@ while True:
                                                  
         elif menu == "4":#INSUMOS-----------------------------------------------------------------------------------------------------------
             print(Fore.YELLOW+Style.BRIGHT+"""
-*************
-*  Insumos  *
-*************""")
+-------------
+|  Insumos  |
+-------------""")
             print(Fore.YELLOW+"""\n1) Mostrar insumos    2) Insertar Insumo   3) Eliminar Insumo   4) Editar Insumo  """)
             
             menuInsumo = input(Fore.YELLOW+"\n-Seleccione una opción: ")
