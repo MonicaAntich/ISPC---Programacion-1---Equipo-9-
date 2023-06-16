@@ -1,9 +1,6 @@
 # TODAS LAS FUNCIONALIDADES DEL PROYECTO
 import modelo
 
-
-
-
 #PRODUCTOS----------------------------------------------------------------------------------------------------------------
 
 def listarProductos():
@@ -62,14 +59,15 @@ def editarProducto():
 #RECETAS-------------------------------------------------------------------------------------------------------------
  
 def listarRecetas():
-
     con = modelo.ConectarRecetas()
     listado = con.listarRecetas()
+    print("")
     for lista in listado:
         print(str(lista[0])+
             ": "+str(lista[1])+
-            " | Insumo: " + str(lista[2])+
-            " | Cantidad de insumo: " + str(lista[3]))
+            " | " + str(lista[2])+
+            "  Cantidad: " + str(lista[3])+
+            " " + str(lista[4]))
          
 def crearReceta():
     con = modelo.ConectarProductos()
@@ -78,6 +76,7 @@ def crearReceta():
     for producto in listado:
         print(  str(producto[0])+": " + str(producto[1]) )
     pizza_nro = input("\nIngrese el numero de pizza: ")
+    
     print("")
     con = modelo.ConectarInsumo()
     listado = con.listarInsumos()
@@ -86,9 +85,10 @@ def crearReceta():
         
     id_insumos = input("\nIngrese el numero de insumo: ")
     cantidad_insumos = input("Ingrese la cantidad de insumo: ")
+    unidad_de_medida=input("Ingrese unidad de medida: ")
     
     
-    productoNuevo = modelo.Recetas(0, pizza_nro,cantidad_insumos,id_insumos)
+    productoNuevo = modelo.Recetas(0, pizza_nro,cantidad_insumos,id_insumos, unidad_de_medida)
 
     con = modelo.ConectarRecetas()
     con.insertarRecetas(productoNuevo)
@@ -117,37 +117,55 @@ def editarReceta():
     print("")
     for lista in listado:
         print(
-            " id receta: "+str(lista[0])+
-            " | Pizza nro: " + str(lista[1])+
-            " | Insumo: " + str(lista[3])+
-            " | Cantidad de insumo: " + str(lista[2])) 
-
+            " ID: "+str(lista[0])+
+            " |  " + str(lista[1])+
+            " | Insumo: " + str(lista[2])+
+            " | Cantidad: " + str(lista[3])+
+        " " + str(lista[4]))
+        
+    print("")
     id_receta = int(input("\nIngrese el ID de la receta a editar: "))
     con = modelo.ConectarRecetas()
     contacto = con.buscarRecetas(id_receta)
-
-    if contacto == None:
+    
+    con = modelo.ConectarRecetas()
+    ler = con.listarEditarRecetas(id_receta)
+ 
+        
+    if contacto  == None:
         print("\nLa busqueda no arrojo resultados")
     else:
-        print(
-            " id receta: "+str(contacto[0])+
-            " | Pizza nro: " + str(contacto[1])+
-            " | Insumo: " + str(contacto[3])+
-            " | Cantidad de insumo: " + str(contacto[2]))  
+        
+        for dato in ler:
+         print(
+            " ID: "+str(dato[0])+" | Pizza: " + str(dato[1])+" | Insumo: " + str(dato[2])+" | Cantidad: " + str(dato[3])+" " + str(dato[4]))
 
-
+        
+        pizza_nro = input("\n Presione Enter ")
+        if pizza_nro == "":
+            pizza_nro = contacto[1] 
+      
+        
         cantidad_insumos = input("\n Ingrese la nueva cantidad de insumos  o Enter para omitir: ")
         if cantidad_insumos == "":
-            cantidad_insumos = lista[2]   
+            cantidad_insumos = contacto[2]   
+            
+            
         con = modelo.ConectarInsumo()
-        listado = con.listarInsumos()
-        for lista in listado:
-            print("ID: "+str(lista[0])+
-                " insumo: "+str(lista[1]))
-        id_insumos = input("\n Ingrese el nuevo id de insumo o Enter para omitir: ")
+        insumos = con.listarInsumos()
+        for i in insumos:
+            print("ID: "+str(i[0])+
+                " insumo: "+str(i[1]))
+            
+        id_insumos = input("\n Ingrese el nuevo ID de insumo o Enter para omitir: ")
         if id_insumos == "":
-            id_insumos = lista[3] 
-        datoEditado = modelo.Recetas(id_receta,'',cantidad_insumos,id_insumos,)
+            id_insumos = contacto[3] 
+            
+        unidad_de_medida = input("\n Ingrese la nueva unidad o Enter para omitir: ")
+        if unidad_de_medida == "":
+            unidad_de_medida = contacto[4] 
+            
+        datoEditado = modelo.Recetas(id_receta,pizza_nro, cantidad_insumos,id_insumos,unidad_de_medida)
 
         conEdit = modelo.ConectarRecetas()
         conEdit.modificarRecetas(datoEditado)
@@ -166,7 +184,7 @@ def descripcionRecetas():
     con = modelo.ConectarRecetas()
     listado = con.listarRecetasDescripcion(pizza_nro)
     for lista in listado:
-        print( str(lista[2]))
+        print( str(lista[3])+""+str(lista[4])+" de "+str(lista[2]))
 #INSUMOS---------------------------------------------------------------------------------------------------------------------
 
 def listarInsumos():
