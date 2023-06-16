@@ -106,11 +106,12 @@ class ConectarProductos:
 #-------------------------------------------------------------------------------------------------------------------------------------------------
 
 class Recetas:
-    def __init__(self, id_receta, pizza_nro,cantidad_insumos, id_insumos) -> None:
+    def __init__(self, id_receta, pizza_nro,cantidad_insumos, id_insumos,unidad_de_medida) -> None:
         self.id_receta = id_receta
         self.pizza_nro = pizza_nro
         self.cantidad_insumos = cantidad_insumos
         self.id_insumos = id_insumos
+        self.unidad_de_medida = unidad_de_medida
          
     def getid_receta(self):
         return self.id_receta
@@ -120,6 +121,8 @@ class Recetas:
         return self.cantidad_insumos
     def getid_insumos(self):
         return self.id_insumos
+    def getunidad_de_medida(self):
+        return self.unidad_de_medida
  
     def setid_receta(self, id_receta):
         self.id_receta = id_receta
@@ -129,10 +132,12 @@ class Recetas:
         self.cantidad_insumos = cantidad_insumos
     def setid_insumos(self,id_insumos):
         self.id_insumos = id_insumos
+    def setunidad_de_medida(self,unidad_de_medida):
+        self.unidad_de_medida = unidad_de_medida
         
 
     def __str__(self) -> str:
-        return self.id_receta + self.pizza_nro +  self.cantidad_insumos + self.id_insumos
+        return self.id_receta + self.pizza_nro +  self.cantidad_insumos + self.id_insumos + self.unidad_de_medida
 class ConectarRecetas:
     def __init__(self) -> None:
         try:
@@ -152,9 +157,22 @@ class ConectarRecetas:
                 cursor = self.conexion.cursor()
                 #sentenciaSQL = "SELECT * FROM recetas;"
                 #sentenciaSQL = "SELECT productos.nombre, insumos.nombre, recetas.cantidad_insumos  from recetas  INNER JOIN productos  on recetas.pizza_nro=productos.id_producto INNER JOIN insumos on recetas.id_insumos=insumos.id_insumos;"
-                sentenciaSQL = "SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos  from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos;"
+                sentenciaSQL = "SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos, a.unidad_de_medida from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos;"
                 
                 cursor.execute(sentenciaSQL)
+                resultados = cursor.fetchall()
+                self.conexion.close()
+                return resultados
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
+                
+    def listarEditarRecetas(self,id_receta):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL="SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos, a.unidad_de_medida  from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE a.id_receta=%s;"
+                datos=(id_receta,)
+                cursor.execute(sentenciaSQL,datos)
                 resultados = cursor.fetchall()
                 self.conexion.close()
                 return resultados
@@ -165,7 +183,7 @@ class ConectarRecetas:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL="SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos  from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE b.id_producto=%s;"
+                sentenciaSQL="SELECT a.id_receta, b.nombre, c.nombre, a.cantidad_insumos, a.unidad_de_medida  from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE b.id_producto=%s;"
                 datos=(pizza_nro,)
                 cursor.execute(sentenciaSQL,datos)
                 resultados = cursor.fetchall()
@@ -178,10 +196,11 @@ class ConectarRecetas:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "INSERT INTO recetas VALUES(NULL,%s,%s,%s);" 
+                sentenciaSQL = "INSERT INTO recetas VALUES(NULL,%s,%s,%s, %s);" 
                 datos = (parametro.getpizza_nro(),
                          parametro.getcantidad_insumos(), 
-                         parametro.getid_insumos())
+                         parametro.getid_insumos(), 
+                         parametro.getunidad_de_medida())
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()
                 self.conexion.close()
@@ -223,11 +242,12 @@ class ConectarRecetas:
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "UPDATE recetas SET pizza_nro= %s, cantidad_insumos=%s, id_insumos=%s  WHERE id_receta=%s;"
+                sentenciaSQL = "UPDATE recetas SET pizza_nro= %s, cantidad_insumos=%s, id_insumos=%s, unidad_de_medida=%s  WHERE id_receta=%s;"
 
                 datos = (parametro.getpizza_nro(),
                          parametro.getcantidad_insumos(),
                          parametro.getid_insumos(),
+                         parametro.getunidad_de_medida(),
                          parametro.getid_receta(),)
 
                 cursor.execute(sentenciaSQL, datos)
@@ -237,7 +257,6 @@ class ConectarRecetas:
 
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
-
 #-------------------------------------------------------------------------------------------------------------------------------------------------
   
 class Insumo:#Creamos el metodo constructor del objeto persona, en python se llama init. Esta es la formula basica de la funcion constructora
