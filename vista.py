@@ -6,23 +6,22 @@ init(autoreset=True) # Para que solo se de color a parte que queremos, debemos i
                     
 
 print(Fore.BLACK+Back.WHITE+"""
----------------------------------------------------------------------------------------------
-|            ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0  Cohorte 2023      |
-|-------------------------------------------------------------------------------------------|
-|            Materia  : Programacion y Base de datos Lenguaje : Python 1er año              |
-|            Profesor : Kevin  Kessler                                                      |
-|            Repositorio :                                                                  |
-|            https://github.com/MonicaAntich/ISPC---Programacion-1---Equipo-9-              |
-|            Alumnos  : Velazquez Hebe                                                      |
-|                       Palacio Braian                                                      |
-|                       Antich Monica                                                       |
----------------------------------------------------------------------------------------------""")
+                ---------------------------------------------------------------------------------------------
+                |            ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0  Cohorte 2023      |
+                |-------------------------------------------------------------------------------------------|
+                |            Materia  : Programacion y Base de datos Lenguaje : Python 1er año              |
+                |            Profesor : Kevin  Kessler                                                      |
+                |            Repositorio :                                                                  |
+                |            https://github.com/MonicaAntich/ISPC---Programacion-1---Equipo-9-              |
+                |            Alumnos  : Velazquez Hebe                                                      |
+                |                       Palacio Braian                                                      |
+                |                       Antich Monica                                                       |
+                ---------------------------------------------------------------------------------------------""")
 #Fore es una constante (de la libreria colorama) que junto al color, muestra los colores en las palabras
 #.BLACK para cambiar el fondo
 
- 
 print(Fore.BLACK+Back.WHITE+"""\n
-                            Buenos días, ¿qué operacion desea realizar?                       """)    
+                            Buenos días, ¿qué operacion desea realizar?                      """)    
 
 while True:
         print(Fore.GREEN+Style.BRIGHT+"""\n    1) Producción del día    """+Fore.BLUE+"""2) Productos    """+Fore.LIGHTMAGENTA_EX+"""3) Recetas    """+Fore.YELLOW+"""4) Insumos    """+Fore.RED+   """5) Salir                """) 
