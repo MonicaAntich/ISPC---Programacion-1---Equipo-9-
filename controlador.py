@@ -191,6 +191,7 @@ def listarInsumos():
 
     con = modelo.ConectarInsumo()
     listado = con.listarInsumos()
+    print("")
     for lista in listado:
         print(
             " insumo: "+str(lista[1])) #si queremos mostrar el id seria con "id: " + str(lista[0])
