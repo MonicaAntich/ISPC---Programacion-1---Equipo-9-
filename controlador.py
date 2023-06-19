@@ -66,7 +66,7 @@ def listarRecetas():
         print(
             ""+str(lista[1])+
             " | " + str(lista[2])+
-            "  Cantidad: " + str(lista[3])+
+            ": " + str(lista[3])+
             " " + str(lista[4]))
          
 def crearReceta():
