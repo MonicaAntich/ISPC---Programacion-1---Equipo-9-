@@ -40,7 +40,11 @@ while True:
                 controlador.listarProduccionDiaria ()
             elif menuProduccion == "2":
                 controlador.crearProduccion()
-            
+            elif menuProduccion == "3":
+                controlador.eliminarProduccion()
+            elif menuProduccion == "4":
+                controlador.editarProducciondiaria ()
+                        
                             
         elif menu == "2":#PRODUCTOS-----------------------------------------------------------------------------------------------------------
             print(Fore.BLUE+Style.BRIGHT+"""
@@ -105,5 +109,6 @@ while True:
             print(Fore.RED+"\n Muchas gracias, adios."); exit()
         else: print(Fore.RED+"Opcion no valida")
         
-             
+        
             
+        

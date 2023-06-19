@@ -406,6 +406,8 @@ class ConectarProduccion:
         except mysql.connector.Error as cantidadError:
             print("No se pudo conectar debido: ", cantidadError)
             
+
+            
     def listarProduccion (self):
         if self.conexion.is_connected ():
              try:
@@ -462,6 +464,72 @@ class ConectarProduccion:
                  return resultados 
              except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar debido: ", cantidadError)       
+                
+    def listarProduccionId(self):
+        if self.conexion.is_connected ():
+             try:
+                 cursor = self.conexion.cursor()
+                 #sentenciasql = "SELECT * FROM produccion_diaria; 
+                 sentenciaSQL = "SELECT a.id_pd, a.fecha, b.nombre, a.cantidad from produccion_diaria a INNER JOIN productos b on a.id_producto=b.id_producto;"
+                 
+                 cursor.execute(sentenciaSQL)
+                 resultados = cursor.fetchall ()
+                 self.conexion.close ()
+                 return resultados 
+             except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar debido: ", cantidadError)
+                
+    def eliminarProduccion (self, parametro):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "DELETE FROM produccion_diaria WHERE id_pd = %s;"
+
+                datos = (parametro.getip_pd (),)
+                cursor.execute(sentenciaSQL, datos)
+                self.conexion.commit()
+                self.conexion.close()
+                print("Receta eliminada correctamente")
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
+                
+                
+    def buscarProduccion(self, id_pd):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM produccion_diaria WHERE id_pd = %s;"
+                datos = (id_pd,)
+                cursor.execute(sentenciaSQL, datos)
+                resultados = cursor.fetchone()
+                self.conexion.commit()
+                self.conexion.close()
+                return resultados
+
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
+
+    def modificarProduccion(self, parametro):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "UPDATE produccion_diaria SET fecha = %s, cantidad =%s, id_producto=%s WHERE id_pd =%s;"
+
+                datos = (parametro.getfecha(),
+                         parametro.getcantidad(),
+                         parametro.getid_producto(),
+                         parametro.getid_pd(),)
+
+                cursor.execute(sentenciaSQL, datos)
+                self.conexion.commit()
+                self.conexion.close()
+                print("Producción actualizada correctamente")
+
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
+#-------------------------------------------------------------------------
+                
+            
                 
    
    
