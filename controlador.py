@@ -63,8 +63,8 @@ def listarRecetas():
     listado = con.listarRecetas()
     print("")
     for lista in listado:
-        print(str(lista[0])+
-            ": "+str(lista[1])+
+        print(
+            ""+str(lista[1])+
             " | " + str(lista[2])+
             "  Cantidad: " + str(lista[3])+
             " " + str(lista[4]))
@@ -141,9 +141,8 @@ def editarReceta():
             " ID: "+str(dato[0])+" | Pizza: " + str(dato[1])+" | Insumo: " + str(dato[2])+" | Cantidad: " + str(dato[3])+" " + str(dato[4]))
 
         
-        pizza_nro = input("\n Presione Enter ")
-        if pizza_nro == "":
-            pizza_nro = contacto[1] 
+    
+        pizza_nro = contacto[1] 
       
         
         cantidad_insumos = input("\n Ingrese la nueva cantidad de insumos  o Enter para omitir: ")
@@ -280,62 +279,63 @@ def eliminarProduccion ():
             " | Pizza: " + str(lista[2])+
             " | Cantidad: " + str(lista[3])) 
 
-    ip_pd= int(input("\nIngrese el nro de Produccioon a eliminar: "))
+    id_pd= int(input("\nIngrese el nro de Produccioon a eliminar: "))
 
     con = modelo.ConectarProduccion()
-    producto = modelo.Produccion_diaria(ip_pd, '', '','')
+    producto = modelo.Produccion_diaria(id_pd, '', '','')
 
     con.eliminarProduccion(producto)
 
 
 def editarProducciondiaria():
     con = modelo.ConectarProduccion()
-    listado = con.listarProduccionId()
+    listado = con.listarProduccion()
     print("")
     for lista in listado:
-        print( 
-            " Numero: "+str(lista[0])+
-            " | Fecha: "+str(lista[1])+
-            " | Pizza: " + str(lista[2])+
-            " | Cantidad: " + str(lista[3])) 
+        print(
+            " ID: "+str(lista[3])+
+            "Fecha: " + str(lista[0]) + #fecha
+            " | " + str(lista[2])+#cantidad
+            " " + str(lista[1])+"s")#pizzas
+
         
     print("")
-    id_pd = int(input("\nIngrese el ID de la producción a editar: "))
+    id_pd = int(input("\nIngrese el ID de la produccion a editar: "))
     con = modelo.ConectarProduccion()
-    contacto = con.buscarProduccion (id_pd)
+    contacto = con.buscarProduccion(id_pd)
     
-            
+    con = modelo.ConectarProduccion()
+    ler = con.listarEditarProduccion(id_pd)
+ 
     if contacto  == None:
         print("\nLa busqueda no arrojo resultados")
     else:
-        print(
-            " Id: " + str(contacto[0])+" | Fecha : " + str(contacto[1])+" | Pizza : " + str(contacto[2])+" | Cantidad: " + str(contacto[3]))
-
         
-        fecha = input("\n Presione Enter ")
-        if fecha == "":
-            fecha = contacto[1] 
-    
+        for dato in ler:
+         print(
+            " ID: "+str(dato[3])+" | Fecha: " + str(dato[0])+" | Pizza: " + str(dato[1])+"  " + str(dato[2]))
+
+        #fecha = input("\n Presione Enter ")
+        #if fecha == "":
+        fecha = contacto[1] 
+            
         con = modelo.ConectarProductos()
         listado = con.listarProductos()
         print("")
-        for producto in listado:
-            print (str (producto[0]) + "Pizza: " + str(producto[1]) )
-
-    
-        pizza = input("\n Ingrese el nuevo número de pizza  o Enter para omitir: ")
-        if pizza == "":
-            pizza = contacto[2]  
+        for lista in listado:
+            print("ID: "+str(lista[0]) +" || Pizza: " + str(lista[1]))  
+              
+        id_producto = input("\n Ingrese la nueva pizza por su NRO o Enter para omitir ")
+        if id_producto == "":
+            id_producto = contacto[3] 
         
-        cantidad = input("\n Ingrese la nueva cantidad de pizza  o Enter para omitir: ")
+        cantidad = input("\n Ingrese la nueva cantidad  o Enter para omitir: ")
         if cantidad == "":
-            cantidad = contacto[3]   
-            
-            
-        datoEditado = modelo.Produccion_diaria (id_pd, fecha, pizza, cantidad)
-
+            cantidad = contacto[2]   
+                       
+        datoEditado = modelo.Produccion_diaria(id_pd,fecha, cantidad,id_producto)
         conEdit = modelo.ConectarProduccion()
-        conEdit.modificarProduccion (datoEditado)
+        conEdit.modificarProduccion(datoEditado)
 
         #input("\n Presione ENTER para continuar")
 

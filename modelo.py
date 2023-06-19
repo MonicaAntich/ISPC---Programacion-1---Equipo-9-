@@ -368,13 +368,13 @@ class ConectarInsumo:#Ahora la clase conexion
 #-------------------------------------------------------------------------------------------------------------------------------------------------
                 
 class Produccion_diaria:
-    def __init__(self, ip_pd, fecha, cantidad, id_producto)->None:
-        self.ip_pd = ip_pd
+    def __init__(self, id_pd, fecha, cantidad, id_producto)->None:
+        self.id_pd = id_pd
         self.fecha = fecha
         self.cantidad = cantidad
         self.id_producto = id_producto
-    def getip_pd (self):
-        return self.ip_pd
+    def getid_pd (self):
+        return self.id_pd
     def getfecha (self):
         return self.fecha
     def getcantidad (self):
@@ -382,8 +382,8 @@ class Produccion_diaria:
     def getid_producto (self):
         return self.id_producto 
     
-    def setip_pd (self, ip_pd):
-        self.ip_pd = ip_pd
+    def setid_pd(self, id_pd):
+        self.id_pd = id_pd
     def setfecha (self, fecha):
         self.fecha = fecha
     def setcantidad (self, cantidad):
@@ -392,7 +392,7 @@ class Produccion_diaria:
         self.id_producto = id_producto
         
     def __str__(self) -> str:
-        return self.ip_pd + self.fecha + self.cantidad + self.id_producto   
+        return self.id_pd + self.fecha + self.cantidad + self.id_producto   
 class ConectarProduccion:
     def __init__(self) -> None:
         try:
@@ -412,8 +412,8 @@ class ConectarProduccion:
         if self.conexion.is_connected ():
              try:
                  cursor = self.conexion.cursor()
-                 #sentenciasql = "SELECT * FROM produccion_diaria; "
-                 sentenciaSQL = "SELECT a.fecha, b.nombre, a.cantidad from produccion_diaria a INNER JOIN productos b on a.id_producto=b.id_producto;"
+                 #sentenciaSQL = "SELECT * FROM produccion_diaria; "
+                 sentenciaSQL = "SELECT a.fecha, b.nombre, a.cantidad, a.id_pd from produccion_diaria a INNER JOIN productos b on a.id_producto=b.id_producto;"
                  
                  cursor.execute(sentenciaSQL)
                  resultados = cursor.fetchall ()
@@ -485,7 +485,7 @@ class ConectarProduccion:
                 cursor = self.conexion.cursor()
                 sentenciaSQL = "DELETE FROM produccion_diaria WHERE id_pd = %s;"
 
-                datos = (parametro.getip_pd (),)
+                datos = (parametro.getid_pd (),)
                 cursor.execute(sentenciaSQL, datos)
                 self.conexion.commit()
                 self.conexion.close()
@@ -525,6 +525,22 @@ class ConectarProduccion:
                 self.conexion.close()
                 print("Producción actualizada correctamente")
 
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)
+                
+                
+    def listarEditarProduccion(self,id_pd):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL="SELECT  a.fecha, b.nombre, a.cantidad, a.id_pd from produccion_diaria a INNER JOIN productos b on a.id_producto=b.id_producto WHERE a.id_pd=%s;"
+                datos=(id_pd,)
+   
+              
+                cursor.execute(sentenciaSQL,datos)
+                resultados = cursor.fetchall()
+                self.conexion.close()
+                return resultados
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
 #-------------------------------------------------------------------------
