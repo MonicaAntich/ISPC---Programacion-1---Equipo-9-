@@ -69,19 +69,19 @@ while True:
 -------------
 |  Recetas  |
 -------------""")
-            print(Fore.LIGHTMAGENTA_EX+"""\n1) Mostrar recetas    2) Insertar receta    3) Eliminar receta   4) Editar receta   5)Descripcion""")
+            print(Fore.LIGHTMAGENTA_EX+"""\n1) Mostrar recetas    2) Insertar receta    3) Eliminar receta   4) Editar receta   """)
             
             menuReceta = input(Fore.LIGHTMAGENTA_EX+"\n-Seleccione una opción: ")
             if menuReceta == "1":
-                controlador.listarRecetas()
+                controlador.descripcionRecetas()
             elif menuReceta == "2":
                 controlador.crearReceta() 
             elif menuReceta == "3":
                 controlador.eliminarReceta()
             elif menuReceta == "4":
                 controlador.editarReceta() 
-            elif menuReceta == "5":
-                controlador.descripcionRecetas() 
+            # elif menuReceta == "5":
+            #     controlador.descripcionRecetas() 
                
                                                  
         elif menu == "4":#INSUMOS-----------------------------------------------------------------------------------------------------------

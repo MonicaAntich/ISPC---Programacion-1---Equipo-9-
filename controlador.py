@@ -94,20 +94,25 @@ def crearReceta():
     con.insertarRecetas(productoNuevo)
     
 def eliminarReceta():
-    con = modelo.ConectarRecetas()
-    listado = con.listarRecetas()
+    con = modelo.ConectarProductos()
+    listado = con.listarProductos()
     print("")
+    for producto in listado:
+        print(  str(producto[0])+": " + str(producto[1]) )
+        
+    pizza_nro = input("\nIngrese número para ver sus ingredientes: ")
+    print("")
+    con = modelo.ConectarRecetas()
+    listado = con.listarRecetasDescripcion(pizza_nro)
     for lista in listado:
-        print(
-            " id receta: "+str(lista[0])+
-            " | Pizza nro: " + str(lista[1])+
-            " | Insumo: " + str(lista[3])+
-            " | Cantidad de insumo: " + str(lista[2])) 
+        print( str(lista[0]) + ": " + str(lista[3])+""+str(lista[4])+" de "+str(lista[2]))
+    
+     
 
     id_receta = int(input("\nIngrese el nro de receta a eliminar: "))
 
     con = modelo.ConectarRecetas()
-    producto = modelo.Recetas(id_receta, '', '','')
+    producto = modelo.Recetas(id_receta, '', '','', '')
 
     con.eliminarRecetas(producto)
     
@@ -252,7 +257,7 @@ def listarProduccionDiaria ():
     for lista in listado:
         print( "Fecha: " + str(lista[0]) + #fecha
                 " | " + str(lista[2])+#cantidad
-           " " + str(lista[1])+"s")#pizzas
+           " " + str(lista[1]))#pizzas
         
 def crearProduccion():
     cantidad =input ("Ingrese la cantidad: ")

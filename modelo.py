@@ -259,7 +259,7 @@ class ConectarRecetas:
                 print("No se pudo conectar! debido: ", cantidadError)
 #-------------------------------------------------------------------------------------------------------------------------------------------------
   
-class Insumo:#Creamos el metodo constructor del objeto persona, en python se llama init. Esta es la formula basica de la funcion constructora
+class Insumo:#Creamos el metodo constructor del objeto Insumo, en python se llama init. Esta es la formula basica de la funcion constructora
     def __init__(self, id_insumos, nombre) -> None:  #Constructor con las variables
         self.id_insumos= id_insumos
         self.nombre = nombre    #Creamos el objeto id y nombre  son parametros, atributos
@@ -280,45 +280,45 @@ class Insumo:#Creamos el metodo constructor del objeto persona, en python se lla
         return self.id_insumos + self.nombre  
 class ConectarInsumo:#Ahora la clase conexion
 
-    def __init__(self) -> None:
+    def __init__(self) -> None: #Clase constructora para entrar a la base de datos
         try:
-            self.conexion = mysql.connector.connect(
-                host = 'brokergrupo6.ddns.net',
+            self.conexion = mysql.connector.connect(    #Aca van los parametros para conectar a la base de datos
+                host = 'brokergrupo6.ddns.net',          
                 port = 3306,
                 user = 'grupo9',
                 password = 'grupo9',
                 db='bd_big_bread'
             )
-        except mysql.connector.Error as cantidadError:
+        except mysql.connector.Error as cantidadError:  #El except avisa si no se conecto y que error
             print("No se pudo conectar debido: ", cantidadError)
             
-    def listarInsumos(self):
-        if self.conexion.is_connected():
+    def listarInsumos(self):        #Aca trae todos los datos q tiene la tabla insumos
+        if self.conexion.is_connected(): 
             try:
-                cursor = self.conexion.cursor()
-                sentenciaSQL = "SELECT * FROM insumos;"
-                cursor.execute(sentenciaSQL)
-                resultados = cursor.fetchall()
-                self.conexion.close()
-                return resultados
+                cursor = self.conexion.cursor()     #se refiere a una estructura de control utilizada para el recorrido (y potencial procesamiento) de los registros del resultado de una consulta
+                sentenciaSQL = "SELECT * FROM insumos;" # Se crea una variable (sentencia sql)
+                cursor.execute(sentenciaSQL)            # Recupera resultados
+                resultados = cursor.fetchall()      #Se crea una variable (resultados) para q almacene todos los datos q nos trajo de la tabla
+                self.conexion.close()               #Se cierra la conexion
+                return resultados                   #Devuelve los datos en la variable resultados
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)
                             
-    def insertarInsumo(self, insumos):
+    def insertarInsumo(self, insumos):       #Aca insertamos datos a la tabla insumos
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
                 sentenciaSQL = "INSERT INTO insumos VALUES(NULL,%s);"
                 datos = (insumos.getnombre(),)
                 cursor.execute(sentenciaSQL, datos)
-                self.conexion.commit()
+                self.conexion.commit()         #El commit es para confirmar que se insertaron datos
                 self.conexion.close()
                 print("Insumo insertado correctamente")
 
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)  
              
-    def eliminarInsumo(self, parametro):
+    def eliminarInsumo(self, parametro):       ##Aca eliminamos datos de la tabla insumos
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
@@ -332,7 +332,7 @@ class ConectarInsumo:#Ahora la clase conexion
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)   
      
-    def buscarInsumo(self, id_insumos):
+    def buscarInsumo(self, id_insumos): # Este metodo trabaja como el metodo listar, pero lista solo un dato con su ID
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
@@ -351,13 +351,13 @@ class ConectarInsumo:#Ahora la clase conexion
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sentenciaSQL = "UPDATE insumos SET nombre=%s WHERE id_insumos= %s;"
+                sentenciaSQL = "UPDATE insumos SET nombre=%s WHERE id_insumos= %s;" #El porcentaje(%) se utiliza para recibir los parametros
 
-                datos = (
-                         insumo.getnombre(),
+                datos = (                           #Se crea la variable datos para guardar los parametros q se van introducir en la sentencia
+                         insumo.getnombre(),        #El get es el metodo con el atributo, donde nos llegan los datos
                          insumo.getid_insumos(),)
 
-                cursor.execute(sentenciaSQL, datos)
+                cursor.execute(sentenciaSQL, datos) 
                 self.conexion.commit()
                 self.conexion.close()
                 print("Insumo actualizado correctamente")
