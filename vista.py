@@ -1,26 +1,19 @@
 # MODULO QUE EL USUARIO VE E INTERACTUA CON EL PROGRAMA
 import controlador
+
 from colorama import init,Fore,Back,Style #Para dar color cuando trabajamos por consola
 init(autoreset=True) # Para que solo se de color a parte que queremos, debemos inicializar 
                      # el módulo con init(autoreset=True)
                     
 
-print(Fore.BLACK+Back.WHITE+"""
-                ---------------------------------------------------------------------------------------------
-                |            ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0  Cohorte 2023      |
-                |-------------------------------------------------------------------------------------------|
-                |            Materia  : Programacion y Base de datos Lenguaje : Python 1er año              |
-                |            Profesor : Kevin  Kessler                                                      |
-                |            Repositorio :                                                                  |
-                |            https://github.com/MonicaAntich/ISPC---Programacion-1---Equipo-9-              |
-                |            Alumnos  : Velazquez Hebe                                                      |
-                |                       Palacio Braian                                                      |
-                |                       Antich Monica                                                       |
-                ---------------------------------------------------------------------------------------------""")
+controlador.cabecera_presentacion ()
+
+
+controlador.limpia()
 #Fore es una constante (de la libreria colorama) que junto al color, muestra los colores en las palabras
 #.BLACK para cambiar el fondo
 
-print(Fore.BLACK+Back.WHITE+"""\n
+print("""\n
                             Buenos días, ¿qué operacion desea realizar?                      """)    
 
 while True:

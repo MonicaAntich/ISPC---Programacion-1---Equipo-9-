@@ -1,5 +1,6 @@
 # TODAS LAS FUNCIONALIDADES DEL PROYECTO
 import modelo
+import time                     # importo la libreria rutinas de delay
 
 #PRODUCTOS----------------------------------------------------------------------------------------------------------------
 
@@ -101,13 +102,20 @@ def eliminarReceta():
         print(  str(producto[0])+": " + str(producto[1]) )
         
     pizza_nro = input("\nIngrese número para ver sus ingredientes: ")
+    id=pizza_nro
+    con = modelo.ConectarProductos()
+    contacto = con.buscarProducto(id)
+    if contacto == None:
+        print("\nLa busqueda no arrojo resultados")
+    else:
+        print("Ingredientes de " + str(contacto[1])+":")
     print("")
+    
     con = modelo.ConectarRecetas()
     listado = con.listarRecetasDescripcion(pizza_nro)
     for lista in listado:
         print( str(lista[0]) + ": " + str(lista[3])+""+str(lista[4])+" de "+str(lista[2]))
     
-     
 
     id_receta = int(input("\nIngrese el nro de receta a eliminar: "))
 
@@ -117,22 +125,35 @@ def eliminarReceta():
     con.eliminarRecetas(producto)
     
 def editarReceta():
-    con = modelo.ConectarRecetas()
-    listado = con.listarRecetas()
+    con = modelo.ConectarProductos()
+    listado = con.listarProductos()
     print("")
-    for lista in listado:
-        print(
-            " ID: "+str(lista[0])+
-            " |  " + str(lista[1])+
-            " | Insumo: " + str(lista[2])+
-            " | Cantidad: " + str(lista[3])+
-        " " + str(lista[4]))
+    for producto in listado:
+        print(  str(producto[0])+": " + str(producto[1]) )
+            
+    pizza_nro = input("\nIngrese número para ver sus ingredientes: ")
+    print("")
+
+    id=pizza_nro
+    con = modelo.ConectarProductos()
+    contacto = con.buscarProducto(id)
+    if contacto == None:
+        print("\nLa busqueda no arrojo resultados")
+    else:
+        print( "Pizza: " + str(contacto[1]))
         
     print("")
+    con = modelo.ConectarRecetas()
+    listado = con.listarRecetasDescripcion(pizza_nro)
+    for dato in listado:
+        print(  " ID: "+str(dato[0])+" | " + str(dato[1])+" | Insumo: " + str(dato[2])+" | Cantidad: " + str(dato[3]) + str(dato[4]))
+        
+        
     id_receta = int(input("\nIngrese el ID de la receta a editar: "))
     con = modelo.ConectarRecetas()
     contacto = con.buscarRecetas(id_receta)
-    
+    print("")
+
     con = modelo.ConectarRecetas()
     ler = con.listarEditarRecetas(id_receta)
  
@@ -143,18 +164,13 @@ def editarReceta():
         
         for dato in ler:
          print(
-            " ID: "+str(dato[0])+" | Pizza: " + str(dato[1])+" | Insumo: " + str(dato[2])+" | Cantidad: " + str(dato[3])+" " + str(dato[4]))
-
-        
-    
+            str(dato[1])+" | Insumo: " + str(dato[2])+" | Cantidad: " + str(dato[3])+ str(dato[4]))
         pizza_nro = contacto[1] 
-      
         
         cantidad_insumos = input("\n Ingrese la nueva cantidad de insumos  o Enter para omitir: ")
         if cantidad_insumos == "":
             cantidad_insumos = contacto[2]   
-            
-            
+                     
         con = modelo.ConectarInsumo()
         insumos = con.listarInsumos()
         for i in insumos:
@@ -182,8 +198,18 @@ def descripcionRecetas():
     print("")
     for producto in listado:
         print(  str(producto[0])+": " + str(producto[1]) )
-        
+            
     pizza_nro = input("\nIngrese número para ver sus ingredientes: ")
+    print("")
+
+    id=pizza_nro
+    con = modelo.ConectarProductos()
+    contacto = con.buscarProducto(id)
+    if contacto == None:
+        print("\nLa busqueda no arrojo resultados")
+    else:
+        print( "Pizza: " + str(contacto[1]))
+        
     print("")
     con = modelo.ConectarRecetas()
     listado = con.listarRecetasDescripcion(pizza_nro)
@@ -298,8 +324,8 @@ def editarProducciondiaria():
     print("")
     for lista in listado:
         print(
-            " ID: "+str(lista[3])+
-            "Fecha: " + str(lista[0]) + #fecha
+            "ID: "+str(lista[3])+
+            " | Fecha: " + str(lista[0]) + #fecha
             " | " + str(lista[2])+#cantidad
             " " + str(lista[1])+"s")#pizzas
 
@@ -345,3 +371,26 @@ def editarProducciondiaria():
         #input("\n Presione ENTER para continuar")
 
         
+def cabecera_presentacion():    # inicio funcion con parte grafica para consola
+        print()  
+        print()  
+        print("----------------------------------------------------------------------")
+        print("| ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0        |")
+        print("----------------------------------------------------------------------")
+        print("| Materia  : Programacion           Lenguaje : Python 1er año        |")
+        print("| Profesor :                                                         |")
+        print("| Profesor : Kevin  Kessler                                          |")
+        print("| Repositorio :                                                      |")
+     
+        print("| https://github.com/MonicaAntich/ISPC---Programacion-1---Equipo-9-  |")
+
+        print("| Alumnos  : Velazquez Hebe | Palacio Braian | Antich Monica         |")
+        print("----------------------------------------------------------------------")
+
+        time.sleep(3)
+        
+def limpia():                   # limpia la pantalla de la consola
+    from os import system
+    system("cls")
+    
+    
