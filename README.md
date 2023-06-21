@@ -15,7 +15,7 @@ A continuacion los miembros del equipo
 * Monica Antich   - https://github.com/MonicaAntich
 * Braian Palacio  - https://github.com/braianpalacio
 
-
+ ![ Hacemos Tu Pizza](/Imagen/HacemosTuPizza.png)
 
 Requerimiento de Proyecto Final Cuatrimestral
 
@@ -54,6 +54,12 @@ LISTAR toda la producción de un día específico.
 LISTAR toda la producción en un rango de fechas específico.
 
 LISTAR todos los insumos para la producción de un día específico.
+
+"Hacemos tu Pizza"
+La Pizzeria comprende la producción de pizzas de 10 variedades. El local se encuentra ubicado en barrio General Paz de la Ciudad de Córdoba Capital.
+Los socios claves son los proveedores de Insumos junto a los proveedores de equipos para la produccion.
+El personal capacitado es un recurso clave.
+
 
 
 **LIBRERIAS**
