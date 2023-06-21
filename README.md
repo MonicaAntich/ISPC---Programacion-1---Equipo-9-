@@ -61,12 +61,6 @@ LISTAR toda la producción en un rango de fechas específico.
 
 LISTAR todos los insumos para la producción de un día específico.
 
-"Hacemos tu Pizza"
-La Pizzeria comprende la producción de pizzas de 10 variedades. El local se encuentra ubicado en barrio General Paz de la Ciudad de Córdoba Capital.
-Los socios claves son los proveedores de Insumos junto a los proveedores de equipos para la produccion.
-El personal capacitado es un recurso clave.
-
-
 
 **LIBRERIAS**
 
