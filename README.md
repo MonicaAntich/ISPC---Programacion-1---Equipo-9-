@@ -22,11 +22,12 @@ La Pizzeria comprende la producción de pizzas de 10 variedades. El local se enc
 Los socios claves son los proveedores de Insumos junto a los proveedores de equipos para la produccion.<br>
 El personal capacitado es un recurso clave.<br>
 
-![ Hacemos Tu Pizza](/Imagen/HacemosTuPizza.png)
+<!-- ![ Hacemos Tu Pizza](/Imagen/HacemosTuPizza.png) -->
+![ Hacemos Tu Pizza](/Videos/HacemosTuPizza.mp4)
 
 **Requerimiento de _Proyecto Final Cuatrimestral_**
 
-La empresa "Big Bread SA" nos ha expresado que necesitan alguna manera de poder informatizar la primera parte de su proceso productivo, que consta de la preparación de los materiales para la producción del día. 
+La empresa **"Big Bread SA"** nos ha expresado que necesitan alguna manera de poder informatizar la primera parte de su proceso productivo, que consta de la preparación de los materiales para la producción del día. 
 
 Todos los días al llegar, deben realizar el mismo trabajo para cada producto que van a producir el día: 
 
@@ -36,7 +37,7 @@ Se necesita poder proveer de una solución informática e innovadora que pueda a
 
 
 
-Análisis de Requerimiento
+**Análisis de Requerimiento**
 
 Luego de trabajarlo con el equipo de TI, se propone:
 Crear una Calculadora de insumos, que reciba la receta que se desea producir, y la cantidad que harán.
@@ -47,7 +48,7 @@ También proveerá los siguientes reportes:
 •Cantidad de insumos utilizados en un día ingresado.
 
 
-Requerimientos Funcionales
+**Requerimientos Funcionales**
 Crear, editar, eliminar PRODUCTOS.
 
 Crear, editar, eliminar INSUMOS.
