@@ -16,13 +16,13 @@ A continuacion los miembros del equipo
 * Braian Palacio  - https://github.com/braianpalacio
 
 
-**"Hacemos tu Pizza"**<br>
+**"Big Bread S.A."**<br>
 
 La Pizzeria comprende la producción de pizzas de 10 variedades. El local se encuentra ubicado en barrio General Paz de la Ciudad de Córdoba Capital.<br>
 Los socios claves son los proveedores de Insumos junto a los proveedores de equipos para la produccion.<br>
 El personal capacitado es un recurso clave.<br>
 
-![ Hacemos Tu Pizza](/Imagen/HacemosTuPizza.png)
+![ Big Bread S.A.](/Imagen/BigBreadSA.png)
 
 
 **Requerimiento de _Proyecto Final Cuatrimestral_**
