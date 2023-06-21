@@ -22,8 +22,8 @@ La Pizzeria comprende la producción de pizzas de 10 variedades. El local se enc
 Los socios claves son los proveedores de Insumos junto a los proveedores de equipos para la produccion.<br>
 El personal capacitado es un recurso clave.<br>
 
-<!-- ![ Hacemos Tu Pizza](/Imagen/HacemosTuPizza.png) -->
-![ Hacemos Tu Pizza](/Videos/HacemosTuPizza.mp4)
+![ Hacemos Tu Pizza](/Imagen/HacemosTuPizza.png)
+
 
 **Requerimiento de _Proyecto Final Cuatrimestral_**
 
