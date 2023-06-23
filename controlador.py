@@ -2,6 +2,32 @@
 import modelo
 import time                     # importo la libreria rutinas de delay
 
+
+#CABECERA----------------------------------------------------------------------------------------------------------------
+
+def cabecera_presentacion():    # inicio funcion con parte grafica para consola
+        print()  
+        print()  
+        print("----------------------------------------------------------------------")
+        print("| ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0        |")
+        print("----------------------------------------------------------------------")
+        print("| Materia  : Programacion           Lenguaje : Python 1er año        |")
+        print("| Profesor :                                                         |")
+        print("| Profesor : Kevin  Kessler                                          |")
+        print("| Repositorio :                                                      |")
+     
+        print("| https://github.com/MonicaAntich/ISPC---Programacion-1---Equipo-9-  |")
+
+        print("| Alumnos  : Velazquez Hebe | Palacio Braian | Antich Monica         |")
+        print("----------------------------------------------------------------------")
+
+        time.sleep(3)
+        
+def limpia():                   # limpia la pantalla de la consola
+    from os import system
+    system("cls")
+       
+
 #PRODUCTOS----------------------------------------------------------------------------------------------------------------
 
 def listarProductos():
@@ -93,7 +119,7 @@ def crearReceta():
 
     con = modelo.ConectarRecetas()
     con.insertarRecetas(productoNuevo)
-    
+ 
 def eliminarReceta():
     con = modelo.ConectarProductos()
     listado = con.listarProductos()
@@ -215,6 +241,7 @@ def descripcionRecetas():
     listado = con.listarRecetasDescripcion(pizza_nro)
     for lista in listado:
         print( str(lista[3])+""+str(lista[4])+" de "+str(lista[2]))
+
 #INSUMOS---------------------------------------------------------------------------------------------------------------------
 
 def listarInsumos():
@@ -245,8 +272,7 @@ def eliminarInsumo():
     con = modelo.ConectarInsumo()
     producto = modelo.Insumo(id_insumos, " ")
     con.eliminarInsumo(producto)   
-    
-     
+        
 def editarInsumo():
     con = modelo.ConectarInsumo()
     listado = con.listarInsumos()
@@ -286,18 +312,25 @@ def listarProduccionDiaria ():
            " " + str(lista[1]))#pizzas
         
 def crearProduccion():
+    print("")
     cantidad =input ("Ingrese la cantidad: ")
     con = modelo.ConectarProductos()
     listado = con.listarProductos()
     print("")
     for producto in listado:
         print( str(producto[0])+" Pizza: " + str(producto[1]) )
+    print("")
     id_producto = input("Ingrese el id del producto: ")
     
     productoNuevo = modelo.Produccion_diaria(0, 0, cantidad, id_producto)
     con = modelo.ConectarProduccion()
     con.insertarProduccion (productoNuevo)
-    
+ 
+    con1 = modelo.ConectarProduccion()
+    insumos = con1.listarInsumosProduccion(id_producto)
+    print("")
+    for i in insumos:
+        print( str(i[2])+": "+str(i[3])+str(i[4]))
     
 def eliminarProduccion ():
     con = modelo.ConectarProduccion()
@@ -316,7 +349,6 @@ def eliminarProduccion ():
     producto = modelo.Produccion_diaria(id_pd, '', '','')
 
     con.eliminarProduccion(producto)
-
 
 def editarProducciondiaria():
     con = modelo.ConectarProduccion()
@@ -370,27 +402,14 @@ def editarProducciondiaria():
 
         #input("\n Presione ENTER para continuar")
 
-        
-def cabecera_presentacion():    # inicio funcion con parte grafica para consola
-        print()  
-        print()  
-        print("----------------------------------------------------------------------")
-        print("| ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0        |")
-        print("----------------------------------------------------------------------")
-        print("| Materia  : Programacion           Lenguaje : Python 1er año        |")
-        print("| Profesor :                                                         |")
-        print("| Profesor : Kevin  Kessler                                          |")
-        print("| Repositorio :                                                      |")
-     
-        print("| https://github.com/MonicaAntich/ISPC---Programacion-1---Equipo-9-  |")
+def listarProdDiaEspecifico():
+    fecha = input("\nIngrese la fecha(AÑO-MES-DIA): ")
+    print("")
+    con = modelo.ConectarProduccion()
+    listado = con.ProduccionDiaEspecifico(fecha)
+    for lista in listado:
+            print( str(lista[2])+" de "+str(lista[1]))
 
-        print("| Alumnos  : Velazquez Hebe | Palacio Braian | Antich Monica         |")
-        print("----------------------------------------------------------------------")
+  
 
-        time.sleep(3)
-        
-def limpia():                   # limpia la pantalla de la consola
-    from os import system
-    system("cls")
-    
-    
+

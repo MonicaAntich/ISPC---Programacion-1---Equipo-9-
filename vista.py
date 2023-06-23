@@ -27,7 +27,7 @@ while True:
 ------------------------  
 |  Producción del día  |
 ------------------------""")
-            print(Fore.GREEN+"""\n1) Mostrar producciones   2) Ingresar produccion del día   3) Eliminar una produccion   4) Editar produccion""")
+            print(Fore.GREEN+"""\n1) Mostrar producciones   2) Ingresar produccion del día   3) Eliminar una produccion   4) Editar produccion   5) Listar produccion""")
             menuProduccion = input(Fore.GREEN+"\n-Seleccione una opción: ")
             if menuProduccion == "1": 
                 controlador.listarProduccionDiaria ()
@@ -37,7 +37,20 @@ while True:
                 controlador.eliminarProduccion()
             elif menuProduccion == "4":
                 controlador.editarProducciondiaria ()
-                        
+            elif menuProduccion == "5":
+                 print(Fore.RESET+"""
+                    1) LISTAR toda la producción de un día específico  
+                    2) LISTAR toda la producción en un rango de fechas específico   
+                    3) LISTAR todos los insumos para la producción de un día específico """) 
+                                      
+                 listarProduccion = input("\n-Seleccione una opción: ")
+                 if listarProduccion == "1": 
+                    controlador.listarProdDiaEspecifico()#LISTAR toda la producción de un día específico.
+                 #elif listarProduccion == "2":
+                        #LISTAR toda la producción en un rango de fechas específico.
+                 #elif listarProduccion == "3":
+                        #LISTAR todos los insumos para la producción de un día específico.
+
                             
         elif menu == "2":#PRODUCTOS-----------------------------------------------------------------------------------------------------------
             print(Fore.BLUE+Style.BRIGHT+"""
