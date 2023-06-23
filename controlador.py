@@ -407,9 +407,50 @@ def listarProdDiaEspecifico():
     print("")
     con = modelo.ConectarProduccion()
     listado = con.ProduccionDiaEspecifico(fecha)
+    total=0
     for lista in listado:
-            print( str(lista[2])+" de "+str(lista[1]))
+            total+= lista[3]
+            print( "NRO: "+str(lista[0])+" | "+str(lista[3])+" de "+str(lista[2]))
+    print("")
+    print("Pizzas realizadas el dia "+ str(fecha)+": "+str(total)  ) 
+    
+    pizza_nro = input("\nIngrese el NRO de produccion para ver sus insumos: ")
+    print("")
+    con = modelo.ConectarProduccion()
+    listado1 = con.listarInsumosTotales(fecha,pizza_nro)
+    #print(listado1)
+    for lista in listado1:
+            print("   "+str(lista[3])+str(lista[4])+" de "+str(lista[2]))
+    
+    
+    
+# def listarProdDia():
+#     fechaInicio = input("\nIngrese la fecha Inicio(AÑO-MES-DIA): ")
+#     fechaFin = input("\nIngrese la fecha Fin(AÑO-MES-DIA): ")
 
-  
+#     print("")
+#     con = modelo.ConectarProduccion()
+#     listado = con.ProduccionDiaEspecifico(fechaInicio,fechaFin)
+#     total=0
+#     for lista in listado:
+#             total+= lista[3]
+#             print( "NRO: "+str(lista[0])+" | "+str(lista[3])+" de "+str(lista[2]))
+#     print("")
+#     print("Pizzas realizadas el dia "+ str(fecha)+": "+str(total)  ) 
+    
+#     pizza_nro = input("\nIngrese el NRO de produccion para ver sus insumos: ")
+#     print("")
+#     con = modelo.ConectarProduccion()
+#     listado1 = con.listarInsumosTotales(fecha,pizza_nro)
+#     #print(listado1)
+#     for lista in listado1:
+#             print("   "+str(lista[3])+str(lista[4])+" de "+str(lista[2]))
+    
+    
+    
+        
+    
+    
+ 
 
 
