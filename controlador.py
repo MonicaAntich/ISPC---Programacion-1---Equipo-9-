@@ -422,6 +422,15 @@ def listarProdDiaEspecifico():
     for lista in listado1:
             print("   "+str(lista[3])+str(lista[4])+" de "+str(lista[2]))
     
+def listarInsumosDiario():
+    fecha = input("\nIngrese la fecha(AÑO-MES-DIA): ")
+    print("")
+    con = modelo.ConectarProduccion()
+    listado = con.listarInsumosTotalesDia(fecha)
+    for lista in listado:
+            print( "Nombre: "+str(lista[0])+" |Total Insumos: "+str(lista[1])+str(lista[2]))
+    print("")
+   
     
     
 # def listarProdDia():

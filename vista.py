@@ -48,8 +48,9 @@ while True:
                     controlador.listarProdDiaEspecifico()#LISTAR toda la producción de un día específico.
                  #elif listarProduccion == "2":
                         #LISTAR toda la producción en un rango de fechas específico.
-                 #elif listarProduccion == "3":
-                        #LISTAR todos los insumos para la producción de un día específico.
+                 elif listarProduccion == "3":
+                     controlador.listarInsumosDiario()
+                        
 
                             
         elif menu == "2":#PRODUCTOS-----------------------------------------------------------------------------------------------------------
