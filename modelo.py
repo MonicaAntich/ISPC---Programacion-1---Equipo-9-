@@ -580,7 +580,23 @@ class ConectarProduccion:
                 return resultados
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)                
-                
+    
+    def listarInsumosTotalesDia(self,fecha):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL="SELECT  c.nombre, SUM(a.cantidad_insumos * d.cantidad)  as total_cantidad, a.unidad_de_medida\
+                        from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto \
+                        INNER JOIN produccion_diaria d on b.id_producto=d.id_producto\
+                        INNER JOIN insumos c on a.id_insumos=c.id_insumos \
+                        WHERE d.fecha=%s GROUP BY c.nombre;"
+                datos=(fecha,)
+                cursor.execute(sentenciaSQL,datos)
+                resultados = cursor.fetchall()
+                self.conexion.close()
+                return resultados
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)            
         
 #-------------------------------------------------------------------------
                 
