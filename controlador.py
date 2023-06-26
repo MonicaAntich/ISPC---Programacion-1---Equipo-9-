@@ -8,18 +8,15 @@ import time                     # importo la libreria rutinas de delay
 def cabecera_presentacion():    # inicio funcion con parte grafica para consola
         print()  
         print()  
-        print("----------------------------------------------------------------------")
-        print("| ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0        |")
-        print("----------------------------------------------------------------------")
-        print("| Materia  : Programacion           Lenguaje : Python 1er año        |")
-        print("| Profesor :                                                         |")
-        print("| Profesor : Kevin  Kessler                                          |")
-        print("| Repositorio :                                                      |")
-     
-        print("| https://github.com/MonicaAntich/ISPC---Programacion-1---Equipo-9-  |")
-
-        print("| Alumnos  : Velazquez Hebe | Palacio Braian | Antich Monica         |")
-        print("----------------------------------------------------------------------")
+        print("-----------------------------------------------------------------------------------")
+        print("|          ISPC Tecnicatura Superior en Innovacion con Tecnologias 4.0            |")
+        print("-----------------------------------------------------------------------------------")
+        print("| Materia  : Programacion                              Lenguaje : Python 1er año  |")
+        print("| Profesor : Kevin  Kessler                                                       |")
+        print("| Repositorio: https://github.com/MonicaAntich/ISPC---Programacion-1---Equipo-9-  |")
+        print("|                                                                                 |")  
+        print("|          Alumnos  : Velazquez Hebe | Palacio Braian | Antich Monica             |")
+        print("-----------------------------------------------------------------------------------")
 
         time.sleep(3)
         
@@ -404,48 +401,83 @@ def editarProducciondiaria():
 
 def listarProdDiaEspecifico():
     fecha = input("\nIngrese la fecha(AÑO-MES-DIA): ")
-    print("")
     con = modelo.ConectarProduccion()
     listado = con.ProduccionDiaEspecifico(fecha)
     total=0
     for lista in listado:
-            total+= lista[3]
-            print( "NRO: "+str(lista[0])+" | "+str(lista[3])+" de "+str(lista[2]))
-    print("")
-    print("Pizzas realizadas el dia "+ str(fecha)+": "+str(total)  ) 
+                total+= lista[3]
+    if total>0:   
+        print("\nPizzas realizadas el dia "+ str(fecha)+": "+str(total)) 
+        print("")
+    else:
+         print("\nNo se realizan pizzas el día: "+ str(fecha)) 
+      
     
-    pizza_nro = input("\nIngrese el NRO de produccion para ver sus insumos: ")
-    print("")
-    con = modelo.ConectarProduccion()
-    listado1 = con.listarInsumosTotales(fecha,pizza_nro)
-    #print(listado1)
-    for lista in listado1:
-            print("   "+str(lista[3])+str(lista[4])+" de "+str(lista[2]))
-    
+    while True:
+        if total>0:   
+            for lista in listado:
+                    print( "NRO: "+str(lista[0])+" | "+str(lista[3])+" de "+str(lista[2]))
+        
+            pizza_nro = input("\nIngrese el NRO para ver sus insumos o escriba (S) para salir: ").upper()
+            print("")
+            con = modelo.ConectarProduccion()
+            listado1 = con.listarInsumosTotales(fecha,pizza_nro)
+            for lista in listado1:
+                    print("   "+str(lista[3])+str(lista[4])+" de "+str(lista[2]))
+                    
+            if pizza_nro == "S":
+                break  
+             
+            print("")
+        else:
+            break 
+        
+   
+          
 def listarInsumosDiario():
     fecha = input("\nIngrese la fecha(AÑO-MES-DIA): ")
     print("")
     con = modelo.ConectarProduccion()
     listado = con.listarInsumosTotalesDia(fecha)
     for lista in listado:
-            print( "Nombre: "+str(lista[0])+" |Total Insumos: "+str(lista[1])+str(lista[2]))
+            print( "    "+str(lista[0])+": "+str(lista[1])+str(lista[2]))
     print("")
    
     
     
 def listarProdFecha():
-    fecha = input("\nIngrese la fecha Inicio(AÑO-MES-DIA): ")
-    fecha1 = input("\nIngrese la fecha Fin(AÑO-MES-DIA): ")
-
-    print("")
+    fecha = input("\nIngrese la fecha(AÑO-MES-DIA): ")
+    fecha1 = input("\nIngrese la fecha(AÑO-MES-DIA): ")
     con = modelo.ConectarProduccion()
-    listado = con.ProduccionFechaEspecifica(fecha, fecha1)
-
+    listado = con.ProduccionDiaEspecificoPorFechas(fecha,fecha1)
+    total=0
     for lista in listado:
-            print( " Pizza: "+str(lista[2])+" | "+str(lista[3]) + " " + str (lista[4]) + " " + str (lista[5]) )
-    print("")
+                total+= lista[3]
+    if total>0:   
+        print("\nPizzas realizadas el dia "+ str(fecha)+" y "+ str(fecha1)+": "+str(total)) 
+        print("")
+    else:
+         print("\nNo se realizan pizzas el día: "+ str(fecha)+" y "+ str(fecha1)) 
+      
     
-       
+    while True:
+        if total>0:   
+            for lista in listado:
+                    print( "NRO: "+str(lista[0])+" | "+str(lista[3])+" de "+str(lista[2]))
+        
+            pizza_nro = input("\nIngrese el NRO para ver sus insumos o escriba (S) para salir: ").upper()
+            print("")
+            con = modelo.ConectarProduccion()
+            listado1 = con.listarInsumosTotalesPorFechas(fecha,fecha1, pizza_nro)
+            for lista in listado1:
+                    print("   "+str(lista[3])+str(lista[4])+" de "+str(lista[2]))
+                    
+            if pizza_nro == "S":
+                break  
+             
+            print("")
+        else:
+            break 
     
     
         
