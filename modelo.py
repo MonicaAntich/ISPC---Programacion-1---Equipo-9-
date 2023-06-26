@@ -567,7 +567,20 @@ class ConectarProduccion:
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)    
                 
+    def ProduccionDiaEspecificoPorFechas(self,fecha,fecha1):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL="SELECT b.id_producto, a.fecha, b.nombre, a.cantidad from produccion_diaria a INNER JOIN productos b on a.id_producto=b.id_producto  WHERE a.fecha >= %s AND a.fecha < %s"
                 
+                datos=(fecha,fecha1,)
+                cursor.execute(sentenciaSQL,datos)
+                resultados = cursor.fetchall()
+                self.conexion.close()
+                return resultados
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)      
+                         
     def listarInsumosTotales(self,fecha,pizza_nro):
         if self.conexion.is_connected():
             
@@ -582,6 +595,19 @@ class ConectarProduccion:
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)                
     
+    def listarInsumosTotalesPorFechas(self,fecha,fecha1,pizza_nro):
+        if self.conexion.is_connected():          
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL="SELECT d.fecha, b.nombre, c.nombre, a.cantidad_insumos * d.cantidad, a.unidad_de_medida    from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN produccion_diaria d on b.id_producto=d.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE d.fecha >= %s AND d.fecha < %s and pizza_nro=%s"
+                datos=(fecha,fecha1,pizza_nro,)
+                cursor.execute(sentenciaSQL,datos)
+                resultados = cursor.fetchall()
+                self.conexion.close()
+                return resultados
+            except mysql.connector.Error as cantidadError:
+                print("No se pudo conectar! debido: ", cantidadError)   
+                 
     def listarInsumosTotalesDia(self,fecha):
         if self.conexion.is_connected():
             try:
@@ -599,19 +625,7 @@ class ConectarProduccion:
             except mysql.connector.Error as cantidadError:
                 print("No se pudo conectar! debido: ", cantidadError)            
     
-    def ProduccionFechaEspecifica(self,fecha,fecha1):
-        if self.conexion.is_connected():
-            try:
-                cursor = self.conexion.cursor()
-                sentenciaSQL="SELECT a.id_receta,d.fecha, b.nombre, c.nombre, a.cantidad_insumos * d.cantidad, a.unidad_de_medida  from recetas a INNER JOIN productos b on a.pizza_nro=b.id_producto INNER JOIN produccion_diaria d on b.id_producto=d.id_producto INNER JOIN insumos c on a.id_insumos=c.id_insumos WHERE d.fecha >= %s AND d.fecha < %s"
-                
-                datos=(fecha,fecha1,)
-                cursor.execute(sentenciaSQL,datos)
-                resultados = cursor.fetchall()
-                self.conexion.close()
-                return resultados
-            except mysql.connector.Error as cantidadError:
-                print("No se pudo conectar! debido: ", cantidadError)    
+   
 #-------------------------------------------------------------------------
 
                 
