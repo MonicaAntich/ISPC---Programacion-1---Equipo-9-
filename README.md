@@ -15,7 +15,7 @@ A continuacion los miembros del equipo
 * Monica Antich   - https://github.com/MonicaAntich
 * Braian Palacio  - https://github.com/braianpalacio
 
-[![Video explicativo de nuestro Proyecto](https://drive.google.com/file/d/1913nSzS8WzS2hmNONQFJ50tknZ6LcyuS/view)]
+[![](https://drive.google.com/file/d/1913nSzS8WzS2hmNONQFJ50tknZ6LcyuS/view)]
 
 **"Big Bread S.A."**<br>
 
