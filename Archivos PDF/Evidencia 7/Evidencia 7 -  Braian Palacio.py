@@ -67,7 +67,7 @@ FamiliaMessi[43216789]="Eusebio"
 FamiliaMessi[75892641]="Celia"
 FamiliaMessi[28374956]="Rosa"
 FamiliaMessi[61459802]="Antonio"
-#print(FamiliaMessi)
+print(FamiliaMessi)
 
 # Crear un nuevo diccionario con claves autogeneradas y valores de números de teléfono.
 #Ambos deben ser mostrados.
