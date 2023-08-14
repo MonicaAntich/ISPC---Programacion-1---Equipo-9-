@@ -3,6 +3,8 @@ import random
 
 # Ejercicios Listas:
 # Crear cuatro listas:
+
+
 print("Nombres de su familia:")
 Familia=["Lionel Messi", "Antonela Roccuzzo", "Mateo Messi", "Thiago Messi ", "Ciro Messi", "Eusebio Messi", "Celia Oliveira Cuccittini", "Rosa Maria Pérez", "Antonio Cuccittini"]
 print(Familia)
@@ -109,9 +111,10 @@ print()
 print("Crear un nuevo diccionario con claves autogeneradas y valores de números de teléfono.")
 agenda = {}
 for i in range(10):
-    clave = random.randint (1, 100)
-    telefono = random.randint (100000000, 999999999)
-    agenda[clave] = telefono
-time.sleep(2)
+    clave = random.randint (1, 1000)
+    tel = random.randint (0000000000, 9999999999)
+    agenda[clave] = tel
 print(agenda)
+
+
 
