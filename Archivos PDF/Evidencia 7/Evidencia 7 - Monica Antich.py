@@ -1,8 +1,9 @@
 # Ejercicios Listas - Crear Cuatro listas
-
+import random
 import time
 from colorama import init,Fore,Back,Style 
 init(autoreset=True)
+
 
 #Lista con nombres de la familia
 print(Fore.GREEN+Style.BRIGHT+"""\n***** La familia *****""")
@@ -95,8 +96,14 @@ time.sleep(1)
 print(datospersonales)
 
 #Diccionario con claves autogeneradas y valores de nros de telefono
+
+ #Creo un diccionario vacio y luego se genera 5 claves y le asigno los numeros de telefono
 print(Fore.GREEN+Style.BRIGHT+"""\n***** Agenda telefonica*****""")
-agenda={'Monica': '3516060758', 'Valentina':'3512106823', 'Mario':'3516805123', 'Luis': '3516234566', 'Alicia':'3516231252', 'Hannah':'3516502401' }
+agenda = {}
+for i in range(5):
+    clave = random.randint (1, 100)
+    telefono = random.randint (100000000, 999999999)
+    agenda[clave] = telefono
 time.sleep(1)
 print(agenda)
 print(Fore.BLUE+Style.BRIGHT+"""\n*********************************************** FIN ************************************************""")
