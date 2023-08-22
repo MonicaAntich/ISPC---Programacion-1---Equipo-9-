@@ -51,7 +51,7 @@ print(Fore.GREEN+Style.BRIGHT+"""\n*********************************************
 # #“es vocal”.
 
 letra = str(input("Ingrese una vocal: "))#Se pide al usuario que ingrese una vocal
-if letra in ["a", "e", "i", "o","u"]: 
+if letra in ["a", "e", "i", "o","u", "A", "E", "I", "O", "U"]: 
     print("Usted ingreso una vocal", letra) #Si se cumple la condicion de ingresar una vocal, muestra este cartel
 else:
     print("Usted ingreso una consonante: ", letra, " ¡debe ingresar una vocal!")#Si no se cumple la condicion, muestra este cartel 
