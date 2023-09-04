@@ -71,6 +71,7 @@ print ("La cantidad de números ingresados menores a cero es: ", menores)
 print ("La cantidad de números ingresados iguales a cero es: ", iguales)"""
 
 
+
 """Algoritmo que pida caracteres e imprima ‘VOCAL’ si son vocales y ‘NO VOCAL’ en caso
 contrario, el programa termina cuando se introduce un cero."""
 
