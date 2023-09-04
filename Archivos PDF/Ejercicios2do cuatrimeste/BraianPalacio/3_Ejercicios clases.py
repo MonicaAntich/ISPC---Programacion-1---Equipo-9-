@@ -277,7 +277,7 @@ class Roles:
 
 
 class CarritoDeCompras:
-    def __init__(self,item):
+    def __init__(self):
         self.item = []
 
     def getitem(self):
@@ -289,7 +289,7 @@ class CarritoDeCompras:
         return self.item
     
     def agregar_item(self, curso):
-        self._items.append(curso)
+        self.item.append(curso)
 
     def confirmar_compra(self):
          print("Compra exitosa")
