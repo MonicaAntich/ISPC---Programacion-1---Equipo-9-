@@ -1,5 +1,6 @@
+from enum import Enum
 
-class Cursos:
+class Curso:
     fechaInicio = ""
     titulo = ""
     descripcion = ""
@@ -11,7 +12,7 @@ class Cursos:
     estado = bool
     clases=[]
     categoria=""
-    CATEGORIAS = ["inicial", "intermedio", "avanzado"]
+ 
     def __init__(self, fechaInicio, titulo, descripcion, objetivos, programa, costo, duracionMeses, foto, estado,categoria ) -> None:
         self.fechaInicio = fechaInicio
         self.titulo = titulo
@@ -21,9 +22,10 @@ class Cursos:
         self.costo = costo
         self.duracionMeses = duracionMeses
         self.foto = foto
+        self.categoria = categoria
         self.estado = estado        
         self.clases = []       
-        self.categoria = categoria
+        
         
     def getfechaInicio(self):
         return self.fechaInicio
@@ -63,29 +65,26 @@ class Cursos:
         self.duracionMeses = duracionMeses
     def setfoto(self, foto):
         self.foto = foto
-    def setestado(self, estado):
-        self.estado = estado
     def setcategoria(self, categoria):
         self.categoria = categoria
-        
+    def setestado(self, estado):
+        self.estado = estado
+
     def agregar_clase(self, clase):
         self.clases.append(clase)    
-        
-    def setcategoria(self, nuevaCategoria):
-        if nuevaCategoria in self.CATEGORIAS:
-            self.categoria = nuevaCategoria
-        else:
-            print("Categoría no válida.")
-            
     
         
     def __str__(self) -> str:
-        return "\n " +self.titulo + " | Fecha de inicio: "+self.fechaInicio +" | Descripcion: "+  self.descripcion +" | Objetivos: "+  self.objetivos +" | Programa: "+  self.programa +" | Costo:"+  str(self.costo) +" | Duracion: "+   str(self.duracionMeses) +" meses | "+  self.foto +" | Categoria:"+ self.categoria +" " + str(self.estado)
+        return "\n " +self.titulo + " | Fecha de inicio: "+self.fechaInicio +" | Descripcion: "+  self.descripcion +" | Objetivos: "+  self.objetivos +" | Programa: "+  self.programa +" | Costo:"+  str(self.costo) +" | Duracion: "+   str(self.duracionMeses) +" meses | "+  self.foto +" | Estado:"+ self.categoria  +" | Categoria: " +  str(self.estado)
 
-CursoMecanica= Cursos("2023-06-22", "Mecanica", "Mecanica basica de auto ", "1:Aprender todas las partes del motor", "Programa", 10000, 9, "mecanica.jpg", "inicial", str(True))
-# print(CursoMecanica)
 
-class Clases:
+class CategoriaCurso(Enum):
+    INICIAL = "Inicial"
+    INTERMEDIO = "Intermedio"
+    AVANZADO = "Avanzado"
+
+
+class Clase:
     fecha = ""
     titulo = "" 
     contenido = ""
@@ -119,8 +118,6 @@ class Clases:
     def __str__(self) -> str:
         return self.fecha +" | "+  self.titulo +" | "+  self.contenido +" | "+  self.URLDrive + " | "+ self.docente
     
-# claseMecanica = Clases("2023-04-15", "Mecanica", "Sistema de refrigeracion", "htpps//googledrive.com.ar", "Pepito Sanchez") 
-# print(claseMecanica)
 
 class Usuario:
     id_Usuario=0
@@ -217,16 +214,17 @@ class Usuario:
     
     def __str__(self) -> str:
         return "\nID:" + str(self.id_Usuario)+ " | Nombre: "+self.apellido +" "+  self.nombre +" | DNI: "+  str(self.dni) +" | Nacimiento: "+  self.fechaNacimiento +" | Direccion: "+  self.direccion +" | Localidad: "+  self.localidad +" | CP: "+  str(self.codigoPostal) +" | Provincia: "+  self.provincia +" | Telefono: "+  str(self.telefono) +" | Celular: "+  str(self.celular) +" | Email: "+  self.email + str(self.estado)
+
+
+class Rol(Usuario):
+    def __init__(self, id_Usuario, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado) -> None:
+        super().__init__(id_Usuario, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado)
     
-# User1= Usuario(1, "Lopez", "Mario", 36521203, "1962-08-29", "27 de Abril de 1995", "Cordoba", 5000, "Cordoba", 563210, 3571541385, "mario@gmail.com", str(True))
-# print(User1)
     
 class Docente(Usuario):
     def __init__(self, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado) -> None:
         super().__init__(apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado)
 
-# Docente1= Docente("Lopez", "Mario", 36521203, "1962-08-29", "27 de Abril de 1995", "Cordoba", 5000, "Cordoba", 563210, 3571541385, "Mario@gmail.com", str(True), "dsasad")
-# print(Docente1)        
     
 class Administrador(Usuario):
     def __init__(self, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado) -> None:
@@ -237,9 +235,6 @@ class CarritoDeCompra:
     id_Carrito_Compra=0
     items=[]
     id_Medio_Pago=0
-    tarjeta=0
-    cuotas=0
-    #0=credito 1=debito 2=tranferencia
     def __init__(self, id_Carrito_Compra,id_Medio_Pago):
         self.id_Carrito_Compra = id_Carrito_Compra
         self.id_Medio_Pago = id_Medio_Pago
@@ -267,19 +262,41 @@ class CarritoDeCompra:
             total += curso.costo
         return total
 
-    def medioDePago(self):
-        id_Medio_Pago = input("Ingrese medio de pago 0=crédito 1=débito 2=transferencia ")
-        if id_Medio_Pago == 0:
-             tarjeta = input("\nIngrese su numero de tarjeta de crédito: ")
-             codigo=input("\nY el codigo de atras: ")
-             cuotas=input("\nIngrese en cuantas cuotas hara el pago(máximo 3): ")
-        elif id_Medio_Pago == 1:
-             tarjeta = input("\nIngrese su numero de tarjeta de débito: ")
-             codigo=input("\nY el codigo de atras: ")
-        elif id_Medio_Pago == 2:
-            print("CBU:1654584652486")
-        else:
-             print("Número incorrecto")
+
+class medioDePago:
+    id_Medio_Pago=0
+    credito=0
+    debito=0
+    transferencia=0
+    cuotas=0
+    def __init__(self, id_Medio_Pago,credito,debito,transferencia,cuotas):
+        self.id_Medio_Pago = id_Medio_Pago
+        self.credito = credito
+        self.debito = debito
+        self.transferencia = transferencia  
+        self.cuotas = cuotas     
+        
+    def getid_Medio_Pago(self):
+        return self.id_Medio_Pago 
+    def getcredito(self):
+        return self.credito
+    def getdebito(self):
+        return self.debito 
+    def gettransferencia(self):
+        return self.transferencia
+    def getcuotas(self):
+        return self.cuotas
+    
+    def setid_Medio_Pago(self, id_Medio_Pago):
+        self.id_Medio_Pago = id_Medio_Pago
+    def setcredito(self, credito):
+        self.credito = credito
+    def setdebito(self, debito):
+        self.debito = debito
+    def settransferencia(self, transferencia):
+        self.transferencia = transferencia
+    def setcuotas(self, cuotas):
+        self.cuotas = cuotas
 
 
 class Compra:
@@ -377,6 +394,8 @@ class TiposDeContacto(MediosDeContacto):
     correo=""
     callCenter=0
     referidoInterno=0
+  
+  
     def __init__(self, id_MedioContacto, fecha, email, telefono, direccion, nombre,whatsApp,correo, callCenter,referidoInterno):
         super().__init__(id_MedioContacto, fecha, email, telefono, direccion, nombre,whatsApp,correo, callCenter,referidoInterno)
             
@@ -405,3 +424,12 @@ class TiposDeContacto(MediosDeContacto):
   
   
 
+
+# Mecanica= Curso("2023-06-22", "Mecanica", "Mecanica basica de auto ", "1:Aprender todas las partes del motor", "Programa", 10000, 9, "mecanica.jpg",  CategoriaCurso.INICIAL , str(True))
+# print(Mecanica)
+# claseMecanica1 = Clase("2023-04-15", "Mecanica", "Sistema de refrigeracion", "htpps//googledrive.com.ar", "Pepito Sanchez") 
+# print(claseMecanica1)
+# User1= Usuario(1, "Lopez", "Mario", 36521203, "1962-08-29", "27 de Abril de 1995", "Cordoba", 5000, "Cordoba", 563210, 3571541385, "mario@gmail.com", str(True))
+# print(User1)
+# Docente1= Docente("Lopez", "Mario", 36521203, "1962-08-29", "27 de Abril de 1995", "Cordoba", 5000, "Cordoba", 563210, 3571541385, "Mario@gmail.com", str(True), "dsasad")
+# print(Docente1)       
