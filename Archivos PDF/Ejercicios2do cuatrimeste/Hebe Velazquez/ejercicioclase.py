@@ -1,8 +1,7 @@
 class tipo_de_cursos: 
     reparacionpc = ""
     reparacionalarmas = ""
-    def __init__(self, Carpinteria, Electricidad, 
-                 ReparacionPc, Hebanisteria, ReparacionAlarmas):
+    def __init__(self, ReparacionPc, , ReparacionAlarmas):
         self.reparacionpc = ReparacionPc
         self.reparacionalarmas = ReparacionAlarmas
                   
@@ -39,7 +38,8 @@ class nivel_de_cursos:
         return self._nivel_avanzado
     def set_nivel_avanzado (self, nivel_avanzado):
         self._nivel_avanzado= nivel_avanzado
-class caracteristicas_cursos:
+        
+class caracteristicas_cursos ():
     fecha_de_inicio= 0
     nombre_curso= ""
     objetivos_habilidades= ""
