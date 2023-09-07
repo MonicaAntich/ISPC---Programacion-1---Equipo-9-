@@ -1,18 +1,6 @@
 from enum import Enum
 
 class Curso:
-    fechaInicio = ""
-    titulo = ""
-    descripcion = ""
-    objetivos = ""
-    programa = ""
-    costo = 0
-    duracionMeses = 0
-    foto = ""
-    estado = bool
-    clases=[]
-    categoria=""
- 
     def __init__(self, fechaInicio, titulo, descripcion, objetivos, programa, costo, duracionMeses, foto, estado,categoria ) -> None:
         self.fechaInicio = fechaInicio
         self.titulo = titulo
@@ -85,11 +73,6 @@ class CategoriaCurso(Enum):
 
 
 class Clase:
-    fecha = ""
-    titulo = "" 
-    contenido = ""
-    URLDrive = ""
-    docente=""
     def __init__(self, fecha, titulo, contenido, URLDrive, docente ) -> None:
         self.fecha = fecha
         self.titulo = titulo
@@ -120,20 +103,6 @@ class Clase:
     
 
 class Usuario:
-    id_Usuario=0
-    apellido = ""
-    nombre = ""
-    dni = 0
-    fechaNacimiento = ""
-    direccion = ""
-    localidad = ""
-    codigoPostal = 0
-    provincia = ""
-    telefono = 0
-    celular = 0
-    email = ""
-    claveAcceso=""
-    estado=bool
     def __init__(self, id_Usuario, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso,estado ) -> None:
         self.id_Usuario = id_Usuario
         self.apellido = apellido
@@ -217,24 +186,25 @@ class Usuario:
 
 
 class Rol(Usuario):
+    id_rol=1#Usuario
     def __init__(self, id_Usuario, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado) -> None:
         super().__init__(id_Usuario, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado)
     
     
 class Docente(Usuario):
+    id_rol=2#Docente
     def __init__(self, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado) -> None:
         super().__init__(apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado)
 
     
 class Administrador(Usuario):
+    id_rol=3#Administrador
     def __init__(self, apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado) -> None:
         super().__init__(apellido, nombre, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, telefono, celular, email, claveAcceso, estado)
 
 
 class CarritoDeCompra:
-    id_Carrito_Compra=0
     items=[]
-    id_Medio_Pago=0
     def __init__(self, id_Carrito_Compra,id_Medio_Pago):
         self.id_Carrito_Compra = id_Carrito_Compra
         self.id_Medio_Pago = id_Medio_Pago
@@ -264,11 +234,6 @@ class CarritoDeCompra:
 
 
 class medioDePago:
-    id_Medio_Pago=0
-    credito=0
-    debito=0
-    transferencia=0
-    cuotas=0
     def __init__(self, id_Medio_Pago,credito,debito,transferencia,cuotas):
         self.id_Medio_Pago = id_Medio_Pago
         self.credito = credito
@@ -300,12 +265,6 @@ class medioDePago:
 
 
 class Compra:
-    id_Compra=0
-    id_Carrito_Compra=0
-    id_Medio_Pago=0
-    id_Usuario=0
-    fecha=""
-    montoTotal=0
     def __init__(self, id_Compra, id_Carrito_Compra, id_Medio_Pago, id_Usuario, fecha, montoTotal):
         self.id_Compra = id_Compra
         self.id_Carrito_Compra = id_Carrito_Compra
@@ -347,12 +306,6 @@ class Compra:
  
         
 class MediosDeContacto:
-    id_MedioContacto=0
-    fecha=""
-    email=""
-    telefono=0
-    direccion=""
-    nombre=""
     def __init__(self, id_MedioContacto, fecha, email, telefono, direccion, nombre):
         self.id_MedioContacto = id_MedioContacto
         self.fecha = fecha
@@ -390,12 +343,6 @@ class MediosDeContacto:
         
         
 class TiposDeContacto(MediosDeContacto):
-    whatsApp=0
-    correo=""
-    callCenter=0
-    referidoInterno=0
-  
-  
     def __init__(self, id_MedioContacto, fecha, email, telefono, direccion, nombre,whatsApp,correo, callCenter,referidoInterno):
         super().__init__(id_MedioContacto, fecha, email, telefono, direccion, nombre,whatsApp,correo, callCenter,referidoInterno)
             
