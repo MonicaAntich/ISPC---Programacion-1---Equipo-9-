@@ -154,9 +154,9 @@ categoria1.set_nombre("Inicial")  # Modifico la categoria (metodo)
 print(categoria1.get_nombre())  # Se muestra la nueva categoria           
       
 
-class Docente:
-    apellido = ""
+class Usuario:
     nombre = ""
+    apellido = ""
     dni = 0
     fecha_nac = 0
     direccion = ""
@@ -165,9 +165,9 @@ class Docente:
     provincia = ""
     telefono_celular = 0
     email = ""
-    def __init__(self, Apellido, Nombre, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, NroTelefono_celular, Email):
-        self.apellido = Apellido
+    def __init__(self, Nombre, Apellido, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, NroTelefono_celular, Email):
         self.nombre = Nombre
+        self.apellido = Apellido        
         self.dni = Dni
         self.fecha_nac = Fecha_nac
         self.direccion = Direccion
@@ -176,12 +176,12 @@ class Docente:
         self.provincia = Provincia
         self.telefono_celular = NroTelefono_celular
         self.email = Email
+        
+    def get_nombre(self):
+        return self.nombre    
     
     def get_apellido(self):
         return self.apellido
-
-    def get_nombre(self):
-        return self.nombre
 
     def get_dni(self):
         return self.dni
@@ -205,13 +205,13 @@ class Docente:
         return self.telefono_celular
 
     def get_email(self):
-        return self.email   
+        return self.email  
+    
+    def set_nombre(self, nombre):
+        self.nombre = nombre 
 
     def set_apellido(self, apellido):
         self.apellido = apellido
-
-    def set_nombre(self, nombre):
-        self.nombre = nombre
 
     def set_dni(self, dni):
         self.dni = dni
@@ -237,20 +237,7 @@ class Docente:
     def set_email(self, email):
         self.email = email
 
-docente1 = Docente("Kessler", "Kevin", "23456788", "1998-04-05", "Lucas V Cordoba 1556", "Alta Gracia", "5186", "Cordoba", "3547420747", "kevin@kessler.com") #Creo el objeto docente e instancio
-print(docente1.get_apellido())  # Muestro el apellido del docente
-docente1.set_email("kevin.kessler@yahoo.com")  # Cambio el correo electrónico
-print(docente1.get_email())  # Muestro el nuevo correo electrónico 
-
-docente2 = Docente("Charletti", "Carlos", "23456789", "1995-05-02", "Agustin Garzon 152", "Dean Funes", "5555", "Cordoba", "3516520321", "charletti@carlos.com") #Creo el objeto docente e instancio
-print(docente2.get_apellido())
-print(docente2.get_direccion())  # Muestro la direccion del docente
-docente2.set_direccion("Santa Ana 1540")  # Cambio la direccion
-print(docente2.get_direccion())  # Muestro la nueva direccion 
-
-
-
-class Usuario(Docente):
+class Docente(Usuario):
     clave_acceso = ""
     mail_activo = ""
     estado1 = ""
@@ -290,8 +277,20 @@ class Usuario(Docente):
            self.estado1 = "Inactivo"
         else:
             self.estado1 = "Activo"   
+            
+            
+docente1 = Usuario("Kessler", "Kevin", "23456788", "1998-04-05", "Lucas V Cordoba 1556", "Alta Gracia", "5186", "Cordoba", "3547420747", "kevin@kessler.com") #Creo el objeto docente e instancio
+print(docente1.get_apellido())  # Muestro el apellido del docente
+docente1.set_email("kevin.kessler@yahoo.com")  # Cambio el correo electrónico
+print(docente1.get_email())  # Muestro el nuevo correo electrónico 
+
+docente2 = Usuario("Charletti", "Carlos", "23456789", "1995-05-02", "Agustin Garzon 152", "Dean Funes", "5555", "Cordoba", "3516520321", "charletti@carlos.com") #Creo el objeto docente e instancio
+print(docente2.get_apellido())
+print(docente2.get_direccion())  # Muestro la direccion del docente
+docente2.set_direccion("Santa Ana 1540")  # Cambio la direccion
+print(docente2.get_direccion())  # Muestro la nueva direccion             
         
-usuario1 = Usuario("usuario@example.com", 1234,"inactivo")
+usuario1 = Docente("usuario@example.com", 1234,"Inactivo")
                                 
 if usuario1.confirmar_clave_acceso("mi_clave"):    # Reconfirmar la clave de acceso
     print("Clave de acceso confirmada")
@@ -299,21 +298,67 @@ else:
     print("La clave de acceso no coincide")       
         
     
-usuario1 = Usuario("usuario@example.com", 1234, "Inactivo")
+usuario1 = Docente("usuario@example.com", 1234, "Inactivo")
 print(f"Estado actual: {usuario1.get_estado1()}")
 
 usuario1.cambiar_estado1()  # Cambiar el estado
 print(f"Nuevo estado: {usuario1.get_estado1()}")   
     
-# class Roles(Usuario):
-#     rol = ""
-# class Compra:
-#     fecha_compra = 0
-# class Carrito_compra:
-#     foto = ""
-#     tit_curso = ""
-#     duracion = ""
-#     costo = 0
+class Roles(Usuario):
+    rol = ""
+    def __init__(self, id_rol, nombre_rol):
+      self.id_rol = Id_rol
+      self.nombre_rol = Nombre_rol
+
+def get_id_rol(self):
+        return self.id_rol
+
+def get_nombre_rol(self):
+        return self.nombre_rol    
+
+def set_id_rol(self, id_rol):
+        self.id_rol = id_rol      
+ 
+def set_nombre_rol(self, id_rol):
+        self.nombre_rol = nombre_rol          
+
+
+class Carrito_compra:
+    foto = ""
+    tit_curso = ""
+    duracion = ""
+    costo = 0
+    def __init__(self, foto, tit_curso, duracion, costo):
+        self.foto = Foto
+        self.tit_curso = TituloCurso
+        self.duracion = Duracion
+        self.costo = Costo
+    
+    def set_foto(self, foto):
+        self.foto= foto
+        
+    def set_tit_curso(self, tit_curso):
+        self.tit_curso= tit_curso
+   
+    def set_duracion(self, duracion):
+        self.duracion= duracion
+    
+    def set_costo(self, costo):
+        self.costo = costo             
+
+    def get_foto(self):
+        return self.foto
+    
+    def get_tit_curso(self):
+        return self.tit_curso
+   
+    def get_duracion(self):
+        return self.duracion
+    
+    def get_costo(self):
+        return self.costo
+    
     
 # class Medio_pago:
 #      tarjeta = ""   
+# class Confirmar_Compra
