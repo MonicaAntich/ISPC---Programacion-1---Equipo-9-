@@ -102,7 +102,7 @@ class Carrito_compra():
     tit_curso = ""
     duracion = ""
     costo = 0
-    def __init__(self, foto, tit_curso, duracion, costo):
+    def __init__(self, Foto,TituCurso, Duracion, Costo):
         self.foto = Foto
         self.tit_curso = TituloCurso
         self.duracion = Duracion
@@ -134,3 +134,50 @@ class Confirmar_Compra(Usuario):
         self.email = Email
         self.fecha_compra =Fecha_Compra
         self.monto_total = Monto_Total
+        
+class Compra():
+    id_compra = 0
+    id_carrito_compra = 0
+    id_medio_pago = ""
+    id_usuario = 0
+    fecha = date
+    monto_total = 0        
+    def __init__(self, Id_Compra, Id_Carrito_compra, Id_Medios_Pago, Id_Usuario, Fecha, Monto_Total):
+        self.id_compra = Id_Compra
+        self.Id_carrito_compra = Id_Carrito_compra
+        self.id_medios_pago = Id_Medios_Pago
+        self.id_usuario = Id_Usuario
+        self.fecha = Fecha
+        self.monto_total = Monto_Total
+        
+class MediosDeContacto():
+    id_medio_contacto = 0
+    fecha = date 
+    email = ""
+    telefono = 0 
+    direccion = ""
+    nombre = ""
+    def __init__(self, Id_Medio_Contacto, Fecha, Email, Telefono, Direccion, Nombre):
+        self.id_medio_contacto = Id_Medio_Contacto
+        self.fecha = Fecha
+        self.email = Email
+        self.telefono = Telefono
+        self.direccion = Direccion
+        self.nombre = Nombre
+
+class TiposDeMedioDeContacto(MediosDeContacto):
+    whatsApp = ""
+    correo_electronico = ""
+    callcenter = 0
+    referido_interno = ""
+    def __init__(self, Id_Medio_Contacto, Fecha, Email, Telefono, Direccion, Nombre, WhatsApp, Correo_Electronico, CallCenter, Referido_Interno):
+        self.id_medio_contacto = Id_Medio_Contacto
+        self.fecha = Fecha
+        self.email = Email
+        self.telefono = Telefono
+        self.direccion = Direccion
+        self.nombre = Nombre
+        self.whatsApp = WhatsApp
+        self.correo_electronico = Correo_Electronico
+        self.callcenter = CallCenter
+        self.referido_interno = Referido_Interno
