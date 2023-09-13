@@ -183,13 +183,12 @@ class tipo_usuarios:
     alumnos= ""
     compradores= ""
     administradores= ""
-    docentes= ""
-    def __init__ (self, Registrados, Alumnos, Compradores, Administradores, Docentes):
+    def __init__ (self, Registrados, Alumnos, Compradores, Administradores):
         self.registrados= Registrados
         self.alumnos= Alumnos
         self.compradores= Compradores
         self.administradores= Administradores
-        self.docentes= Docentes
+        
     
     def get_registrados (self):
         return self._registrados 
@@ -207,13 +206,9 @@ class tipo_usuarios:
         return self._administradores 
     def set_administradores (self, administradores):
         self._administradores= administradores
-    def get_docentes (self):
-        return self._docentes
-    def set_docentes (self, docentes):
-        self._docentes= docentes 
-        
+            
     
-class datos_compra:
+class carrito_compra:
     foto= ""
     nombre_curso= ""
     duracion= ""
@@ -265,10 +260,32 @@ class medio_pago:
         return self._transferencia_bancaria
     def set_transferencia_bancaria (self, transferencia_bancaria):
        self._transferencia_bancaria = transferencia_bancaria
-class carrito_compras (datos_compra): #Foto, título del curso, duración, costo heredado de datos_compra.
-    print ("Descripción de la compra:  ")
-
+class docentes (usuarios):
+    materias= ""
+    cantidad_horas= 0
+    def __init__(self, Materias, Cantidad_Horas):
+        self.materias= materias
+        self.cantidad_horas= Cantidad_Horas
+class compra:
+    id_compra= ""
+    id_carrito_compra= ""
+    id_medios_pago= ""
+    id_usuarios= ""
+    fecha= 0
+    id_monto_total= 0
+    def __init__(self, Id_Compra, Id_Carrito_Compra,Id_Medios_Pagos,
+                Id_Usuarios, Id_Fecha, Id_Monto_Total):
+        class medios_de_contactos(usuarios):
+            id_medio_contacto= ""
+            fecha= 0
+            def __init__ (self, Id_Medio_Contacto, Fecha):
+                    self.id_medio_contacto= Id_Medio_Contacto
+            self.fecha= Fecha
+from enum import Enum       
+class medios_de_contacto (Enum):
+    whatsapp: 0
+    correo_electrónico= ""
+    call_center= 0
+    interno_referido= 0
+class medio_de_contacto (medios_de_contacto):
     
-    
-           
-       
