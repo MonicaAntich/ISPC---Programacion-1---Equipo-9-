@@ -265,3 +265,8 @@ class medio_pago:
         return self._transferencia_bancaria
     def set_transferencia_bancaria (self, transferencia_bancaria):
        self._transferencia_bancaria = transferencia_bancaria
+class carrito_compras: #Foto, título del curso, duración, costo.
+    
+    
+           
+       
