@@ -1,7 +1,7 @@
 class tipo_de_cursos: 
     reparacionpc = ""
     reparacionalarmas = ""
-    def __init__(self, ReparacionPc, , ReparacionAlarmas):
+    def __init__(self, ReparacionPc, ReparacionAlarmas):
         self.reparacionpc = ReparacionPc
         self.reparacionalarmas = ReparacionAlarmas
                   
@@ -265,7 +265,9 @@ class medio_pago:
         return self._transferencia_bancaria
     def set_transferencia_bancaria (self, transferencia_bancaria):
        self._transferencia_bancaria = transferencia_bancaria
-class carrito_compras: #Foto, título del curso, duración, costo.
+class carrito_compras (datos_compra): #Foto, título del curso, duración, costo heredado de datos_compra.
+    print ("Descripción de la compra:  ")
+
     
     
            
