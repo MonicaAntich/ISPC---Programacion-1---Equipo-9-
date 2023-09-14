@@ -127,20 +127,10 @@ class Medio_pago():
       self.transferencia = Transferencia
     
     
-class Confirmar_Compra(Usuario):
+class Confirmar_Compra():
     fecha_compra= date
     monto_total = 0
-    def __init__(self, Nombre, Apellido, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, NroTelefono_celular, email, Fecha_Compra, Monto_Total):
-        self.nombre = Nombre
-        self.apellido = Apellido        
-        self.dni = Dni
-        self.fecha_nac = Fecha_nac
-        self.direccion = Direccion
-        self.localidad = Localidad
-        self.codigo_post = Codigo_post
-        self.provincia = Provincia
-        self.telefono_celular = NroTelefono_celular
-        self.email = Email
+    def __init__(self,Fecha_Compra, Monto_Total):
         self.fecha_compra =Fecha_Compra
         self.monto_total = Monto_Total
         
