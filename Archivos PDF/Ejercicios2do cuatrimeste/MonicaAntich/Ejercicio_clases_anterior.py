@@ -336,7 +336,7 @@ class Confirmar_Compra():
         self.fecha_compra =Fecha_Compra
         self.monto_total = Monto_Total
     def muestra_datos_Confirmar_Compra(self):
-        print("compro el dia: " + self.fecha_compra, "por un total de: "+ self.monto_total)
+        print("compro el dia: " + self.fecha_compra, "por un total de $ "+ self.monto_total)
                 
 class Compra():
     id_compra = 0
