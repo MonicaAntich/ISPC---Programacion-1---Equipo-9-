@@ -1,4 +1,5 @@
 from enum import Enum
+
 class Curso():
     nombrecurso = ""
     fecha_inicio = 0
@@ -10,7 +11,7 @@ class Curso():
     duracion_meses = 0
     foto = ""
     estado = True
-    categoria = ""
+    
     def __init__(self,
                  NombreCurso,  
                  Fecha_Inicio,
@@ -21,8 +22,7 @@ class Curso():
                  Costo,
                  Duracion_Meses,
                  Foto,
-                 Estado,
-                 Categoria):
+                 Estado):
         self.nombrecurso = NombreCurso
         self.fecha_inicio = Fecha_Inicio
         self.titulo = Titulo
@@ -33,8 +33,7 @@ class Curso():
         self.duracion_meses = Duracion_Meses
         self.foto = Foto
         self.estado = Estado
-        self.categoria = Categoria
-       
+
     def get_nombrecurso(self):
         return self.nombrecurso
 
@@ -52,7 +51,7 @@ class Curso():
 
     def get_programa(self):
         return self.programa
- 
+
     def get_costo(self):
         return self.costo
 
@@ -65,12 +64,9 @@ class Curso():
     def get_estado(self):
         return self.estado
     
-    def get_categoria(self):
-        return self.categoria
-   
     def set_nombrecurso(self, nombrecurso):
         self.nombrecurso = nombrecurso
- 
+
     def set_fecha_inicio(self, fecha_inicio):
         self.fecha_inicio = fecha_inicio
 
@@ -98,43 +94,18 @@ class Curso():
     def set_estado(self, estado):
         self.estado = estado
 
-    def set_categoria(self, categoria):
-        self.categoria = categoria
-
-curso1 = Curso("Programación Inicial 2023", "2023-09-11", "Programar en Python", "Dictar", "Metas del curso", "Detalle del curso", 100, 3, "imagen.jpg", True, "Avanzado") #Creo el objeto curso e instancio
+curso1 = Curso("Programación Inicial 2023", "2023-09-11", "Programar en Python", "Dictar", "Metas del curso", "Detalle del curso", 100, 3, "imagen.jpg", True) #Creo el objeto curso e instancio
 print(curso1.get_titulo())  # Muestro el título del curso
 curso1.set_estado(False)  # Modifico el estado del curso (metodo)
 print(curso1.get_estado())  # Se muestra el estado actual del curso De verdadero a falso
 
 class Categoria(Enum):
-    avanzado = ""
-    intermedio = ""
-    inicial =""
-    def __init__(self, Avanzado, Intermedio, Inicial):
-      self.avanzado = Avanzado
-      self.intermedio = Intermedio
-      self.inicial = Inicial 
-    
-    def get_avanzado(self):
-        return self.avanzado
-    
-    def get_intermedio(self):
-        return self.intermedio
-    
-    def get_inicial(self):
-        return self.inicial
-   
-    def set_avanzado(self, avanzado):
-        self.avanzado = avanzado
-    
-    def set_intermedio(self, intermedio):
-        self.intermedio = intermedio
-    
-    def set_inicial(self, inicial):
-        self.inicial = inicial  
-        
-print(Categoria.inicial)        
-    
+    Avanzado = "Avanzado"
+    Intermedio = "Intermedio"
+    Inicial = "Inicial"   
+
+categoria3 = Categoria.Inicial       
+print(categoria3.value)  # "Inicial"  
 
 class Dictado_clase():
     fecha = 0
@@ -175,7 +146,7 @@ dictado1 = Dictado_clase("2023-09-02", "Analisis Matematico", "Funciones Trigono
 print(dictado1.get_titulo())  # Muestro el título del dictado de clases
 dictado1.set_contenido("Derivadas e Integrales")  # Modifico el contenido (metodo)
 print(dictado1.get_contenido())  # Se muestra el contenido de la clase    
-   
+
 class Usuario():
     id_usuario = 0
     nombre = ""
@@ -204,10 +175,10 @@ class Usuario():
         self.email = Email
         self.clave_acceso = Clave_acceso
         self.estado = Estado
-       
+
     def get_nombre(self):
         return self.nombre    
-   
+
     def get_apellido(self):
         return self.apellido
 
@@ -234,13 +205,13 @@ class Usuario():
 
     def get_email(self):
         return self.email
-   
+
     def get_clave_acceso(self):
         return self.clave_acceso
-   
+
     def get_estado(self):
         return self.estado
-   
+
     def set_nombre(self, nombre):
         self.nombre = nombre
 
@@ -270,10 +241,10 @@ class Usuario():
 
     def set_email(self, email):
         self.email = email
-       
+
     def set_clave_acceso(self, clave_acceso):
         self.clave_acceso = clave_acceso
-       
+
     def set_estado(self, estado):
         self.estado = estado
         
@@ -281,7 +252,7 @@ usuario1 = Usuario("100", "Monica", "Antich", "Dni: 22372209", "Fecha_nac: 29/09
 print(usuario1.get_apellido())
 usuario1.set_estado("Activo")
 print(usuario1.get_estado())
-       
+
 class Docente(Usuario):
     def __init__(self, Id_Usuario, Nombre, Apellido, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, NroTelefono_celular, Email, Clave_acceso, Estado):
         Usuario.__init__(self, Id_Usuario, Nombre, Apellido, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, NroTelefono_celular, Email, Clave_acceso, Estado)
@@ -294,7 +265,7 @@ print(docente1.get_clave_acceso())
 class Adminsitrador(Usuario):
     def __init__(self, Nombre, Apellido, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, NroTelefono_celular, Email, Clave_acceso, Estado) -> None:
         Usuario.__init__(self, Id_Usuario, Nombre, Apellido, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, NroTelefono_celular, Email, Clave_acceso, Estado)
-         
+
 
 class Carrito_compra():
     foto = ""
@@ -306,47 +277,46 @@ class Carrito_compra():
         self.tit_curso = TituloCurso
         self.duracion = Duracion
         self.costo = Costo
-   
+
     def set_foto(self, foto):
         self.foto= foto
-       
+
     def set_tit_curso(self, tit_curso):
         self.tit_curso= tit_curso
-   
+
     def set_duracion(self, duracion):
         self.duracion= duracion
-   
+
     def set_costo(self, costo):
         self.costo = costo            
 
     def get_foto(self):
         return self.foto
-   
+
     def get_tit_curso(self):
         return self.tit_curso
-   
+
     def get_duracion(self):
         return self.duracion
-   
+
     def get_costo(self):
         return self.costo
-   
-   
+
 class Medio_pago():
     tarjeta_credito = ""
     tarjeta_debito = ""
     transferencia = ""
     def __init__(self, Tarjeta_Credito, Tarjeta_Debito, Transferencia):
-      self.tarjeta_credito = Tarjeta_Credito
-      self.tarjeta_debito = Tarjeta_Debito
-      self.transferencia = Transferencia
-   
+        self.tarjeta_credito = Tarjeta_Credito
+        self.tarjeta_debito = Tarjeta_Debito
+        self.transferencia = Transferencia
+
     def get_tarjeta_credito(self):
         return self.tarjeta_credito
     
     def get_tarjeta_debito(self):
         return self.tarjeta_debito
-     
+
     def get_transferencia(self):
         return self.transferencia   
     
@@ -358,11 +328,11 @@ class Medio_pago():
     
     def set_transferencia(self, transferencia):
         self.transferencia = transferencia
-   
+
 class Confirmar_Compra(Usuario):
     fecha_compra= ""
     monto_total = 0
-   
+
     def __init__(self, Id_Usuario, Nombre, Apellido, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, NroTelefono_celular, Email, Clave_acceso, Estado, Fecha_Compra, MontoTotal):
         Usuario.__init__(self, self, Id_Usuario, Nombre, Apellido, Dni, Fecha_nac, Direccion, Localidad, Codigo_post, Provincia, Fecha_Compra, MontoTotal)
         self.fecha_compra = Fecha_Compra
@@ -418,5 +388,3 @@ class TiposDeMedioDeContacto(MediosDeContacto):
         self.correo_electronico = Correo_Electronico
         self.callcenter = CallCenter
         self.referido_interno = Referido_Interno
-
-
