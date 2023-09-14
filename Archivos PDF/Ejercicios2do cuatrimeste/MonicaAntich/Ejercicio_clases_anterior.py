@@ -1,3 +1,4 @@
+from enum import Enum
 class Curso():
     nombrecurso = ""
     fecha_inicio = 0
@@ -105,6 +106,35 @@ print(curso1.get_titulo())  # Muestro el título del curso
 curso1.set_estado(False)  # Modifico el estado del curso (metodo)
 print(curso1.get_estado())  # Se muestra el estado actual del curso De verdadero a falso
 
+class Categoria(Enum):
+    avanzado = ""
+    intermedio = ""
+    inicial =""
+    def __init__(self, Avanzado, Intermedio, Inicial):
+      self.avanzado = Avanzado
+      self.intermedio = Intermedio
+      self.inicial = Inicial 
+    
+    def get_avanzado(self):
+        return self.avanzado
+    
+    def get_intermedio(self):
+        return self.intermedio
+    
+    def get_inicial(self):
+        return self.inicial
+   
+    def set_avanzado(self, avanzado):
+        self.avanzado = avanzado
+    
+    def set_intermedio(self, intermedio):
+        self.intermedio = intermedio
+    
+    def set_inicial(self, inicial):
+        self.inicial = inicial  
+        
+print(Categoria.inicial)        
+    
 
 class Dictado_clase():
     fecha = 0

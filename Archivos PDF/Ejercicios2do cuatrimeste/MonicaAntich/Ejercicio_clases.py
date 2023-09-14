@@ -34,6 +34,15 @@ class Curso():
         self.estado = Estado
         self.categoria = Categoria
 
+class Categoria(Enum):
+    avanzado = ""
+    intermedio = ""
+    inicial =""
+    def __init__(self, Avanzado, Intermedio, Inicial):
+      self.avanzado = Avanzado
+      self.intermedio = Intermedio
+      self.inicial = Inicial
+      
 class Dictado_clase():
     fecha = 0
     titulo = "" 
