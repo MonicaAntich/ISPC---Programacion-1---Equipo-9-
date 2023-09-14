@@ -180,3 +180,5 @@ class TiposDeMedioDeContacto(MediosDeContacto):
         self.correo_electronico = Correo_Electronico
         self.callcenter = CallCenter
         self.referido_interno = Referido_Interno
+        
+        
