@@ -121,14 +121,14 @@ class clases:
 class usuarios:
     nombre= ""
     apellido= ""
-    dni= 0
+    DNI= 0
     direccion= ""
     fecha_nacimiento= 0
     localidad= ""
     provincia= ""
     telefono= 0
     email= ""
-    def __init__ (self,  Nombre, Apellido, Dni, Direccion, Fecha_nacimiento, 
+    def __init__ (self,  Nombre, Apellido, DNI, Direccion, Fecha_nacimiento, 
               Localidad, Provincia, Telefono, Email):
         self.nombre= Nombre
         self.apellido= Apellido
@@ -263,29 +263,73 @@ class medio_pago:
 class docentes (usuarios):
     materias= ""
     cantidad_horas= 0
-    def __init__(self, Materias, Cantidad_Horas):
-        self.materias= materias
+    def __init__(self, Nombre, Apellido, DNI, Direccion, Fecha_Nacimiento, 
+                 Localidad, Provincia, Telefono, Email, Materias, Cantidad_Horas):
+        self.nombre= Nombre
+        self.apellido= Apellido
+        self.DNI= DNI
+        self.direccion= Direccion
+        self.fecha_nacimiento= Fecha_Nacimiento
+        self.localidad= Localidad
+        self.provincia= Provincia
+        self.telefono= Telefono
+        self.email= Email
+        self.materias= Materias
         self.cantidad_horas= Cantidad_Horas
 class compra:
     id_compra= ""
     id_carrito_compra= ""
     id_medios_pago= ""
     id_usuarios= ""
-    fecha= 0
+    id_fecha= 0
     id_monto_total= 0
     def __init__(self, Id_Compra, Id_Carrito_Compra,Id_Medios_Pagos,
                 Id_Usuarios, Id_Fecha, Id_Monto_Total):
-        class medios_de_contactos(usuarios):
-            id_medio_contacto= ""
-            fecha= 0
-            def __init__ (self, Id_Medio_Contacto, Fecha):
-                    self.id_medio_contacto= Id_Medio_Contacto
-            self.fecha= Fecha
-from enum import Enum       
-class medios_de_contacto (Enum):
-    whatsapp: 0
-    correo_electrónico= ""
-    call_center= 0
-    interno_referido= 0
-class medio_de_contacto (medios_de_contacto):
+        self.id_compra= Id_Compra
+        self.id_carrito_compra= Id_Carrito_Compra
+        self.medios_pago= Id_Medios_Pagos
+        self.usuarios= Id_Usuarios
+        self.fecha= Id_Fecha
+        self.id_monto_total= Id_Monto_Total
     
+class medios_de_contactos:
+    id_medio_contacto= ""
+    fecha= 0
+    email= ""
+    telefono= 0
+    direccion= ""
+    nombre= ""
+    def __init__ (self, Id_Medio_Contacto, Fecha, Email, Telefono, Direccion, Nombre):
+        self.id_medio_contacto= Id_Medio_Contacto
+        self.fecha= Fecha  
+        self.email= Email
+        self.telefono= Telefono
+        self.direccion= Direccion
+        self.nombre= Nombre
+
+    
+from enum import Enum       
+class tipos_medios_de_contacto (medios_de_contactos): #hereda el método constructor de medios de contacto 
+    whatsapp:Enum
+    correo_electronico= Enum
+    call_center= Enum
+    interno_referido= Enum
+    def __init__ (self, Id_Medio_contacto, Fecha, Email, Telefono, Direccion, 
+        Nombre, Whatsapp,Correo_Electronico, Call_Center, Interno_Referido):
+        self.whatsapp= Whatsapp
+        self.correo_electronico= Correo_Electronico
+        self.call_center= Call_Center
+        self.id_medio_contacto= Id_Medio_contacto
+        self.fecha= Fecha  
+        self.email= Email
+        self.telefono= Telefono
+        self.direccion= Direccion
+        self.nombre= Nombre
+        
+    
+    
+        
+        
+    
+        
+        
