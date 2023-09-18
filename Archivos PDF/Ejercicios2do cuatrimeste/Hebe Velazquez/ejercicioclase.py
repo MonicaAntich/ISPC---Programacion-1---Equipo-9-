@@ -330,3 +330,6 @@ class tipos_medios_de_contacto (medios_de_contactos): #hereda el método constru
     
         
         
+    
+        
+        
