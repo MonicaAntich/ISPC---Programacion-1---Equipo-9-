@@ -342,34 +342,13 @@ class MediosDeContacto:
         self.nombre = nombre        
         
         
-class TiposDeContacto(MediosDeContacto):
-    def __init__(self, id_MedioContacto, fecha, email, telefono, direccion, nombre,whatsApp,correo, callCenter,referidoInterno):
-        super().__init__(id_MedioContacto, fecha, email, telefono, direccion, nombre,whatsApp,correo, callCenter,referidoInterno)
-            
-        self.whatsApp = whatsApp
-        self.correo = correo
-        self.callCenter = callCenter
-        self.referidoInterno = referidoInterno
-     
-    def getwhatsApp(self):
-        return self.whatsApp
-    def getcorreo(self):
-        return self.correo
-    def getcallCenter(self):
-        return self.callCenter
-    def getreferidoInterno(self):
-        return self.referidoInterno
-  
-    def setwhatsApp(self, whatsApp):
-        self.whatsApp = whatsApp
-    def setcorreo(self, correo):
-        self.correo = correo
-    def setcallCenter(self, callCenter):
-        self.callCenter = callCenter
-    def setreferidoInterno(self, referidoInterno):
-        self.referidoInterno = referidoInterno
-  
-  
+class TiposDeContacto(Enum):
+    WhatsApp = ("WhatsApp")
+    Correo_electronico = ("Correo electrónico")
+    Call_center = ("Call center")
+    Referido_interno = ("Referido interno")
+   
+
 
 
 # Mecanica= Curso("2023-06-22", "Mecanica", "Mecanica basica de auto ", "1:Aprender todas las partes del motor", "Programa", 10000, 9, "mecanica.jpg",  CategoriaCurso.INICIAL , str(True))
