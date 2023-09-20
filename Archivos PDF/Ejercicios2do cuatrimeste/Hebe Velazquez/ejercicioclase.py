@@ -309,11 +309,11 @@ class medios_de_contactos:
 
     
 from enum import Enum       
-class tipos_medios_de_contacto (medios_de_contactos): #hereda el método constructor de medios de contacto 
-    whatsapp:Enum
-    correo_electronico= Enum
-    call_center= Enum
-    interno_referido= Enum
+class tipos_medios_de_contacto (medios_de_contactos, Enum): #hereda el método constructor de medios de contacto 
+    whatsapp:1
+    correo_electronico= 2
+    call_center= 3
+    interno_referido= 4
     def __init__ (self, Id_Medio_contacto, Fecha, Email, Telefono, Direccion, 
         Nombre, Whatsapp,Correo_Electronico, Call_Center, Interno_Referido):
         self.whatsapp= Whatsapp
