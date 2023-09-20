@@ -1,3 +1,5 @@
+from enum import Enum
+
 class Curso():
     nombrecurso = ""
     fecha_inicio = 0
@@ -164,7 +166,7 @@ class MediosDeContacto():
         self.direccion = Direccion
         self.nombre = Nombre
 
-class TiposDeMedioDeContacto(MediosDeContacto):
+class TiposDeMedioDeContacto(MediosDeContacto, Enum):
     whatsApp = ""
     correo_electronico = ""
     callcenter = 0
