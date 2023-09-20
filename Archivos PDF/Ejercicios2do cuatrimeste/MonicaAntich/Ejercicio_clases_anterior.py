@@ -368,7 +368,7 @@ class MediosDeContacto():
         self.direccion = Direccion
         self.nombre = Nombre
 
-class TiposDeMedioDeContacto(MediosDeContacto):
+class TiposDeMedioDeContacto(MediosDeContacto, Enum):
     whatsApp = ""
     correo_electronico = ""
     callcenter = 0
@@ -384,3 +384,5 @@ class TiposDeMedioDeContacto(MediosDeContacto):
         self.correo_electronico = Correo_Electronico
         self.callcenter = CallCenter
         self.referido_interno = Referido_Interno
+        
+  
