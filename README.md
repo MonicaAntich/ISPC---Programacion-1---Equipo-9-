@@ -6,7 +6,7 @@ Tecnicatura Superior Innovacion con Tecnologias 4.0
 
 
 ***************************************************************************************************************
-Este repositorio es creado para Programación Inicial - TSIT4.0 - 2023, a cargo del Profesor Kevin Arce Kessler.
+Este repositorio es creado para Programación Inicial - TSIT4.0 - 2023
 ***************************************************************************************************************
 
 A continuacion los miembros del equipo 
@@ -15,11 +15,22 @@ A continuacion los miembros del equipo
 * Monica Antich   - https://github.com/MonicaAntich
 * Braian Palacio  - https://github.com/braianpalacio
 
+Video de nuestro Proyecto
+https://drive.google.com/file/d/1913nSzS8WzS2hmNONQFJ50tknZ6LcyuS/view
 
 
-Requerimiento de Proyecto Final Cuatrimestral
+**"Big Bread S.A."**<br>
 
-La empresa "Big Bread SA" nos ha expresado que necesitan alguna manera de poder informatizar la primera parte de su proceso productivo, que consta de la preparación de los materiales para la producción del día. 
+La Pizzeria comprende la producción de pizzas de 10 variedades. El local se encuentra ubicado en barrio General Paz de la Ciudad de Córdoba Capital.<br>
+Los socios claves son los proveedores de Insumos junto a los proveedores de equipos para la produccion.<br>
+El personal capacitado es un recurso clave.<br>
+
+![ Big Bread S.A.](/Imagen/BigBreadSA.png)
+
+
+**Requerimiento de _Proyecto Final Cuatrimestral_**
+
+La empresa **"Big Bread SA"** nos ha expresado que necesitan alguna manera de poder informatizar la primera parte de su proceso productivo, que consta de la preparación de los materiales para la producción del día. 
 
 Todos los días al llegar, deben realizar el mismo trabajo para cada producto que van a producir el día: 
 
@@ -29,7 +40,7 @@ Se necesita poder proveer de una solución informática e innovadora que pueda a
 
 
 
-Análisis de Requerimiento
+**Análisis de Requerimiento**
 
 Luego de trabajarlo con el equipo de TI, se propone:
 Crear una Calculadora de insumos, que reciba la receta que se desea producir, y la cantidad que harán.
@@ -40,7 +51,7 @@ También proveerá los siguientes reportes:
 •Cantidad de insumos utilizados en un día ingresado.
 
 
-Requerimientos Funcionales
+**Requerimientos Funcionales**
 Crear, editar, eliminar PRODUCTOS.
 
 Crear, editar, eliminar INSUMOS.
@@ -55,10 +66,11 @@ LISTAR toda la producción en un rango de fechas específico.
 
 LISTAR todos los insumos para la producción de un día específico.
 
-**CREACION BASE DE DATOS REMOTA/NUBE**
 
-DNS:        brokergrupo6.ddns.net<br>
-puerto:     3306<br>
-Usuario:    grupo9<br>
-Password:   grupo9<br>
+**LIBRERIAS**
 
+☼ mysql connector
+
+☼ colorama
+
+☼ time
