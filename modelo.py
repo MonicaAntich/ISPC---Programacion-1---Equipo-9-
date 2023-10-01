@@ -22,10 +22,10 @@ class ConectarProductos:
     def __init__(self) -> None:
         try:
             self.conexion = mysql.connector.connect(
-                host = 'brokergrupo6.ddns.net',
+                host = 'localhost',
                 port = 3306,
-                user = 'grupo9',
-                password = 'grupo9',
+                user = 'root',
+                password = '',
                 db='bd_big_bread'
             )
         except mysql.connector.Error as cantidadError:
